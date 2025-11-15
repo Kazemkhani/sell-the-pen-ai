@@ -1,0 +1,124 @@
+# CALL TRANSCRIPT
+{transcript}
+
+# YOUR ANALYSIS
+
+Provide a detailed JSON response with the following structure:
+
+{{
+  "overall_score": <number 0-100>,
+  "grade": "<letter A-F>",
+  
+  "dimension_scores": {{
+    "opening": {{
+      "score": <0-20>,
+      "points_earned": {{
+        "clear_intro": <0-5>,
+        "used_name": <0-5>,
+        "asked_permission": <0-5>,
+        "value_prop": <0-5>
+      }},
+      "explanation": "<why this score>"
+    }},
+    "qualifying": {{
+      "score": <0-25>,
+      "points_earned": {{
+        "question_count": <0-10>,
+        "pain_focused": <0-10>,
+        "listen_ratio": <0-5>
+      }},
+      "questions_asked": ["list", "of", "questions"],
+      "questions_missed": ["should", "have", "asked"],
+      "explanation": "<why this score>"
+    }},
+    "objection_handling": {{
+      "score": <0-25>,
+      "points_earned": {{
+        "looped_back": <0-15>,
+        "persistence": <0-5>,
+        "empathy_reframe": <0-5>
+      }},
+      "objections_encountered": ["list of objections"],
+      "loops_attempted": <number>,
+      "explanation": "<why this score>"
+    }},
+    "appointment_setting": {{
+      "score": <0-20>,
+      "points_earned": {{
+        "assumptive_close": <0-10>,
+        "specific_times": <0-5>,
+        "fair_technique": <0-5>
+      }},
+      "appointment_secured": <true/false>,
+      "explanation": "<why this score>"
+    }},
+    "tonality": {{
+      "score": <0-10>,
+      "points_earned": {{
+        "energy": <0-3>,
+        "name_usage": <0-2>,
+        "pacing": <0-3>,
+        "precision": <0-2>
+      }},
+      "red_flags": ["list", "of", "issues"],
+      "explanation": "<why this score>"
+    }}
+  }},
+  
+  "strengths": [
+    {{
+      "what": "<specific thing done well>",
+      "timestamp": "<when in call>",
+      "quote": "<exact quote from transcript>",
+      "why_good": "<Mike Ferry principle applied>"
+    }}
+  ],
+  
+  "critical_mistakes": [
+    {{
+      "issue_type": "<opening|qualifying|objection|appointment|tonality>",
+      "timestamp": "<when in call>",
+      "what_they_said": "<exact quote>",
+      "why_wrong": "<Mike Ferry principle violated>",
+      "impact": "<how this hurt the call>",
+      "correction": {{
+        "better_script": "<what they should have said>",
+        "principle": "<which Mike Ferry rule to apply>",
+        "practice_drill": "<specific exercise to fix this>"
+      }}
+    }}
+  ],
+  
+  "call_flow_summary": {{
+    "opening_quality": "<1-2 sentence assessment>",
+    "discovery_quality": "<did they uncover needs?>",
+    "objection_handling_quality": "<did they loop or give up?>",
+    "closing_quality": "<did they secure appointment?>",
+    "overall_impression": "<1-2 sentence overall take>"
+  }},
+  
+  "next_steps": {{
+    "primary_focus": "<single biggest area to improve>",
+    "practice_drill": "<specific 30-minute exercise>",
+    "script_to_memorize": "<exact script to practice>",
+    "success_metric": "<how to know when improved>"
+  }}
+}}
+
+# IMPORTANT INSTRUCTIONS:
+
+1. **Be brutally honest** - Don't inflate scores. These agents need real feedback.
+
+2. **Quote the transcript** - Use exact quotes, not paraphrases
+
+3. **Give specific corrections** - Don't say "be more confident," say "Replace 'Sorry to bother you' with 'Is this a good time?'"
+
+4. **Prioritize impact** - Focus on the mistakes that cost them the most
+
+5. **One primary focus** - Don't overwhelm them. Pick ONE thing to drill next.
+
+6. **Use Mike Ferry's language** - Reference his specific techniques (looping, assumptive close, fair technique)
+
+7. **Provide before/after scripts** - Show them exactly what to say differently
+
+Now analyze the transcript above.
