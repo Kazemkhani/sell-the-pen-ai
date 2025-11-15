@@ -55,10 +55,9 @@ export const resolveTranscriptForFeedback = (): TranscriptPayload => {
     };
   }
 
-  // Until VAPI integration we fall back to GOOD transcript so UI always has data
   return {
-    transcript: getDummyTranscript('GOOD'),
-    source: 'fallback',
-    type: 'GOOD',
+    transcript: '',
+    source: 'placeholder',
+    type: DUMMY_TRANSCRIPT_TYPE,
   };
 };

@@ -26,3 +26,6 @@ const defaultApiBase = 'http://localhost:3000/api';
 export const API_BASE_URL = (getEnv('VITE_API_BASE_URL') ?? defaultApiBase).replace(/\/$/, '');
 
 export const SESSION_TRANSCRIPT_KEY = 'sell-pen-session-transcript';
+
+export const VAPI_PUBLIC_KEY = getEnv('VITE_VAPI_PUBLIC_KEY');
+export const VAPI_ASSISTANT_ID = getEnv('VITE_VAPI_ASSISTANT_ID');

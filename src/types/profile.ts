@@ -61,7 +61,7 @@ export const DEMO_PROFILE: UserProfile = {
   name: "Amir Kazamkhani",
   company: "Nova Real Estate",
   experienceLevel: "beginner",
-  salesRole: "SDR",
+  salesRole: "RealEstate",
   rejectionResponse: "deeply-affected",
   resilienceScore: 1,
   communicationStyle: "assertive",

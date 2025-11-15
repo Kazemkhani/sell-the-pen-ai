@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserProfileProvider } from "@/contexts/UserProfileContext";
 import Index from "./pages/Index";
-import TryNow from "./pages/TryNow";
 import PersonaSelection from "./pages/PersonaSelection";
 import CallSimulation from "./pages/CallSimulation";
 import Feedback from "./pages/Feedback";
@@ -48,7 +47,6 @@ const App = () => (
             <Route path="/recommendations" element={<Recommendations />} />
 
             {/* Main flow */}
-            <Route path="/try-now" element={<TryNow />} />
             <Route path="/persona-selection" element={<PersonaSelection />} />
             <Route path="/call-simulation" element={<CallSimulation />} />
             <Route path="/feedback" element={<Feedback />} />

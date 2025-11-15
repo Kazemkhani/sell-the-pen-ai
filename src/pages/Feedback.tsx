@@ -4,9 +4,7 @@ import { Progress } from "@/components/ui/progress";
 import { AlertTriangle, ArrowRight, RefreshCw } from "lucide-react";
 import { Link } from "react-router-dom";
 import { UserGreeting } from "@/components/UserGreeting";
-import { getDummyFeedbackAnalysis } from "@/data/dummy-feedback";
 import { requestFeedbackAnalysis } from "@/lib/feedback-api";
-import { DUMMY_TRANSCRIPT_TYPE, USE_DUMMY_TRANSCRIPT } from "@/lib/env";
 import { resolveTranscriptForFeedback, TranscriptPayload } from "@/lib/transcript-source";
 import type { FeedbackAnalysis } from "@/types/feedback";
 
@@ -77,22 +75,16 @@ const Feedback = () => {
     setLoading(true);
     setError(null);
 
-    if (!USE_DUMMY_TRANSCRIPT) {
-      const type = DUMMY_TRANSCRIPT_TYPE;
-      setTranscriptMeta({
-        transcript: '',
-        source: 'placeholder',
-        type,
-      });
-      setAnalysis(getDummyFeedbackAnalysis(type));
+    const payload = resolveTranscriptForFeedback();
+    setTranscriptMeta(payload);
+
+    if (!payload.transcript?.trim()) {
       setLoading(false);
+      setError("No call transcript available. Start a call first.");
       return;
     }
 
     try {
-      const payload = resolveTranscriptForFeedback();
-      setTranscriptMeta(payload);
-
       const result = await requestFeedbackAnalysis({
         sessionId: crypto?.randomUUID?.() ? crypto.randomUUID() : `session-${Date.now()}`,
         transcript: payload.transcript,
@@ -164,9 +156,9 @@ const Feedback = () => {
             <div className="inline-flex items-center gap-2 rounded-full bg-muted/70 px-4 py-1 mt-6 text-sm text-muted-foreground">
               <span className="font-semibold text-foreground">Source:</span>
               {transcriptMeta.source === "dummy" && `Dummy (${transcriptMeta.type}) transcript`}
-              {transcriptMeta.source === "session" && "Live session transcript"}
-              {transcriptMeta.source === "fallback" && "Fallback sample (awaiting VAPI)"}
-              {transcriptMeta.source === "placeholder" && "Mock analysis (awaiting VAPI integration)"}
+              {transcriptMeta.source === "session" && "Recent Vapi session"}
+              {transcriptMeta.source === "fallback" && "Fallback sample"}
+              {transcriptMeta.source === "placeholder" && "Awaiting live call transcript"}
             </div>
           )}
         </div>
@@ -186,8 +178,8 @@ const Feedback = () => {
                   <span className="text-2xl text-muted-foreground">/100</span>
                 </div>
                 <p className="text-muted-foreground mt-4">
-                  Grade <span className="font-semibold text-foreground">{analysis.grade}</span> —
-                  weighted blend of opening, qualifying, objections, appointment setting, and tonality.
+                  Grade <span className="font-semibold text-foreground">{analysis.grade}</span> — weighted blend of opening,
+                  qualifying, objections, appointment setting, and tonality.
                 </p>
               </div>
               <div className="bg-muted/40 rounded-2xl p-6">
@@ -243,9 +235,7 @@ const Feedback = () => {
                   )}
 
                   {key === "appointment_setting" && (
-                    <p className="mt-4 text-sm text-muted-foreground">
-                      Appointment secured: {data.appointment_secured ? "Yes" : "No"}
-                    </p>
+                    <p className="mt-4 text-sm text-muted-foreground">Appointment secured: {data.appointment_secured ? "Yes" : "No"}</p>
                   )}
 
                   {key === "tonality" && (
@@ -331,7 +321,7 @@ const Feedback = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button size="lg" variant="ghost" className="text-lg px-8 rounded-full" onClick={runAnalysis}>
-            <RefreshCw className="mr-2 h-5 w-5" /> Re-run with same transcript
+            <RefreshCw className="mr-2 h-5 w-5" /> Re-run analysis
           </Button>
           <Link to="/recommendations">
             <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full">

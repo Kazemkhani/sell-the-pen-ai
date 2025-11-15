@@ -1,5 +1,7 @@
 # Logs
 # test change 
+__pycache__/
+*.egg-info*
 logs
 *.log
 npm-debug.log*

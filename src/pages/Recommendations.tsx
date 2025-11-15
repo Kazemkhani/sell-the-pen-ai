@@ -24,7 +24,7 @@ const Recommendations = () => {
     return Math.min(score, 95);
   };
 
-  const getPitchingMatch = () => {
+  const getProposalMatch = () => {
     let score = 50;
     if (profile.topChallenges.includes("value")) score += 20;
     if (profile.communicationStyle === "analytical") score += 10;
@@ -34,9 +34,9 @@ const Recommendations = () => {
 
   const leadOutreachMatch = getLeadOutreachMatch();
   const objectionHandlingMatch = getObjectionHandlingMatch();
-  const pitchingMatch = getPitchingMatch();
+  const proposalMatch = getProposalMatch();
 
-  // Fixed order: Lead Outreach → Pitching & Positioning → Objection Handling & Closing
+  // Fixed order: Lead Outreach → Proposal Crafting → Objection Handling & Closing
   const recommendations = [
     {
       skill: "Lead Outreach",
@@ -49,18 +49,18 @@ const Recommendations = () => {
         : "Master the art of first contact and cold calling",
     },
     {
-      skill: "Pitching & Positioning",
-      path: "/try-now", // Not implemented yet
+      skill: "Proposal Crafting",
+      path: "#", // Coming soon
       icon: "💼",
-      match: pitchingMatch,
-      priority: pitchingMatch >= 85 ? "high" : "medium",
+      match: proposalMatch,
+      priority: proposalMatch >= 85 ? "high" : "medium",
       reason: profile.topChallenges.includes("value")
         ? "Helps you articulate value propositions clearly"
-        : "Communicate value with precision and impact",
+        : "Craft compelling proposals that win deals",
     },
     {
       skill: "Objection Handling & Closing",
-      path: "/try-now", // Not implemented yet
+      path: "#", // Coming soon
       icon: "🛡️",
       match: objectionHandlingMatch,
       priority: objectionHandlingMatch >= 85 ? "high" : "medium",

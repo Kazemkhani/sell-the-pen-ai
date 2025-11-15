@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Flame, Search, Users } from "lucide-react";
+import { ArrowLeft, ArrowRight, Flame, Search, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { UserGreeting } from "@/components/UserGreeting";
 
@@ -8,6 +8,13 @@ const PersonaSelection = () => {
     <div className="min-h-screen bg-background px-6 py-24 relative">
       <UserGreeting />
       <div className="max-w-6xl mx-auto">
+        <div className="mb-12 flex justify-start">
+          <Link to="/recommendations">
+            <Button variant="ghost" className="rounded-full px-4 py-2 text-sm">
+              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Recommendations
+            </Button>
+          </Link>
+        </div>
         <div className="text-center mb-16 animate-fade-in-up">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
             Choose Your Customer Persona
