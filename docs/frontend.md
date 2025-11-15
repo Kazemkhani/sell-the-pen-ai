@@ -1,11 +1,32 @@
 # Frontend Documentation - Sell The Pen AI
 
 > AI-Powered Sales Training Platform Frontend
-> Built with Lovable AI | Last Updated: November 2025
+
+
+## 🆕 Recent Updates (November 2025)
+
+**Major Features Added:**
+1. ✅ **Proposal Crafting Page** - Tom Sant methodology-based proposal analysis
+2. ✅ **Real Estate Focus** - Onboarding limited to Real Estate agents only
+3. ✅ **Vapi Integration** - "Talk to Mukesh" voice AI widget
+4. ✅ **First Name Greeting** - "Hello Amir" (not full name)
+5. ✅ **Removed /try-now** - Streamlined to direct Recommendations flow
+6. ✅ **Grayed Out Options** - Coming soon badges on unavailable features
+
+**Current Active Features:**
+- 📞 Lead Outreach (Vapi voice calls with Mukesh)
+- 💼 Proposal Crafting (Tom Sant analysis demo)
+- 🚧 Objection Handling (Coming Soon - grayed out)
+
+**Demo Profile:**
+- Name: Amir Kazamkhani (first name: Amir)
+- Company: Nova Real Estate
+- Role: Real Estate Agent (only active option)
 
 ---
 
 ## Table of Contents
+- [Recent Updates](#-recent-updates-november-2025)
 - [Overview](#overview)
 - [Tech Stack](#tech-stack)
 - [Project Architecture](#project-architecture)
@@ -21,14 +42,18 @@
 
 ## Overview
 
-**Sell The Pen AI** is a sales training web application that helps sales professionals practice and improve their skills through AI-powered simulated sales calls. The platform provides:
+**Sell The Pen AI** is a sales training web application designed for **Real Estate Agents** that helps them practice and improve their skills through AI-powered voice calls and proposal analysis. The platform provides:
 
-- **Live AI sales call simulations** with different customer personas
-- **Real-time feedback** based on proven sales methodologies (Chris Voss, SPIN Selling, Challenger Sale)
-- **Performance analytics** with detailed scoring and actionable insights
-- **Psychology-based coaching** for objection handling and closing techniques
+- **Live AI voice call simulations** via Vapi with "Mukesh" AI prospect
+- **Real-time feedback** based on **Mike Ferry** cold calling methodology
+- **Proposal analysis** based on **Tom Sant's** "Persuasive Business Proposals" framework
+- **Personalized onboarding** with 8-step psychological profiling
+- **Smart recommendations** based on user challenges and goals
 
-**Current Status:** Frontend prototype with demo/mock data (no backend integration yet)
+**Current Status:**
+- ✅ Frontend: Production-ready with Vapi integration
+- ✅ Proposal Crafting: Demo mode with mock analysis
+- 🚧 Backend: FastAPI scaffold created, API integration pending
 
 ---
 

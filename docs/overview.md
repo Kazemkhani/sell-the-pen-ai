@@ -23,10 +23,10 @@
 **Sell The Pen AI** is an AI-powered sales training platform designed to revolutionize how sales professionals develop their skills. By leveraging voice AI agents and intelligent feedback systems, we're creating an accessible, scalable solution for sales training that addresses the future of work in the digital economy.
 
 ### Quick Stats
-- **Target Users:** Sales professionals, SDRs, BDRs, Account Executives
-- **Tech Stack:** React + TypeScript frontend, AI voice agents, RAG-based feedback
+- **Target Users:** Real Estate Agents (Nova Real Estate focus)
+- **Tech Stack:** React + TypeScript frontend, Vapi voice AI, FastAPI backend (scaffold)
 - **Hackathon Theme:** Digital Economy & Future of Work
-- **Primary Focus:** Lead Outreach (Cold Calling) training with voice AI
+- **Primary Focus:** Real estate cold calling training with voice AI + Proposal analysis
 
 ### Key Innovation
 Unlike traditional sales training (expensive coaching, role-play sessions, static courses), **Sell The Pen AI** provides:
@@ -79,21 +79,23 @@ Unlike traditional sales training (expensive coaching, role-play sessions, stati
 
 ### Long-Term Vision
 
-Build a **comprehensive sales training ecosystem** that covers the entire sales funnel with three specialized AI agents:
+Build a **comprehensive sales training ecosystem** that covers the entire sales funnel with three specialized AI tools:
 
-1. **Lead Outreach Agent** 🎯
-   - Focus: Cold calling and initial contact
-   - Voice-based AI simulation
+1. **Lead Outreach Training** 🎯 (✅ IMPLEMENTED)
+   - Focus: Real estate cold calling and initial contact
+   - Voice-based AI simulation via **Vapi**
    - Practice breaking through gatekeepers
-   - Master opening scripts and tonality
+   - Master Mike Ferry cold calling methodology
+   - Voice agent: "Mukesh" - AI prospect persona
 
-2. **Positioning & Pitching Agent** 💼
-   - Focus: Value communication and product positioning
-   - Text-based interactive scenarios
-   - Practice articulating value propositions
-   - Learn to handle technical questions
+2. **Proposal Crafting Analysis** 💼 (✅ DEMO IMPLEMENTED)
+   - Focus: Business proposal evaluation
+   - PDF upload and AI analysis
+   - Based on **Tom Sant's** "Persuasive Business Proposals" methodology
+   - Scores on: Customer-centric language, Executive Summary, Proof Points, Win Themes, Value Pricing
+   - Actionable feedback with specific improvements
 
-3. **Objection Handling & Closing Agent** 🤝
+3. **Objection Handling & Closing** 🤝 (🚧 COMING SOON)
    - Focus: Negotiation and deal closure
    - Voice-based high-pressure simulations
    - Practice overcoming objections
@@ -429,42 +431,55 @@ Mike_Ferry_KB/
 ### ✅ Completed (Frontend)
 
 **Production-Ready UI:**
-- [x] **8-step onboarding flow** (NEW - November 2025)
-  - [x] Basic info (Name, Company)
-  - [x] Experience level selection
-  - [x] Sales role selection
-  - [x] Rejection handling assessment
-  - [x] Communication style preference
+- [x] **8-step onboarding flow** (Real Estate focused)
+  - [x] Basic info (Name, Company) - Demo: Amir Kazamkhani, Nova Real Estate
+  - [x] Experience level selection (Beginner/Intermediate/Experienced/Veteran)
+  - [x] Sales role selection (**Real Estate only** - other roles grayed out as "Coming Soon")
+  - [x] Rejection handling assessment (4-point scale)
+  - [x] Communication style preference (Analytical/Relationship/Assertive/Patient)
   - [x] Top challenges (multi-select up to 2)
-  - [x] Learning style preference
+  - [x] Learning style preference (Trial & Error/Guided/Analytical/Quick Wins)
   - [x] Goals and timeline setting
-- [x] **Recommendations page** (NEW)
-  - [x] Smart skill matching based on profile
-  - [x] Match percentage calculation
+- [x] **Recommendations page**
+  - [x] Smart skill matching based on user profile
+  - [x] Match percentage calculation per skill
   - [x] Personalized reasons for each recommendation
-- [x] **User greeting system** (NEW)
-  - [x] "Hello Amir" displayed on all pages post-onboarding
-  - [x] UserProfile context for global state
+  - [x] **Lead Outreach** (active) - links to persona selection
+  - [x] **Proposal Crafting** (active) - links to PDF upload page
+  - [x] **Objection Handling** (grayed out as "Coming Soon")
+- [x] **User greeting system**
+  - [x] "Hello Amir" (first name only) displayed on all pages post-onboarding
+  - [x] UserProfile context for global state management
   - [x] localStorage persistence
-- [x] Landing page with hero, features, testimonials, stats
-- [x] Skill selection page (3 options: Lead Outreach, Pitching, Objection Handling)
-- [x] Persona selection page (1 active persona, 2 coming soon)
-- [x] Call simulation interface
+- [x] **Landing page** with hero, features, testimonials, stats
+- [x] **Persona selection page**
+  - [x] 1 active persona: "Dominant & Aggressive" (Mukesh)
+  - [x] 2 personas grayed out as coming soon
+- [x] **Call simulation interface** (Vapi integration)
   - [x] Pre-call animation (phone ringing effect)
-  - [x] Timer display (MM:SS)
-  - [x] Live transcript box
-  - [x] Waveform visualization
-  - [x] End call button
-  - [x] Auto-end after 30 seconds (demo mode)
-- [x] Feedback display page
-  - [x] 4 score cards with progress bars
+  - [x] VapiWidget component with "Talk to Mukesh" button
+  - [x] Live transcript display
+  - [x] Real-time voice conversation with AI prospect
+  - [x] End call functionality
+- [x] **Proposal Crafting page** (NEW - Tom Sant methodology)
+  - [x] Demo mode banner warning
+  - [x] PDF upload interface (mock upload button)
+  - [x] Analysis loading state (2-second simulation)
+  - [x] Tom Sant framework evaluation cards
+  - [x] Score breakdown (5 categories)
+  - [x] Strengths and recommendations sections
+  - [x] Next steps with actionable items
+  - [x] Back to dashboard navigation
+- [x] **Feedback display page** (Mike Ferry methodology)
+  - [x] 4 score cards with progress bars (Opening/Control/Objection/Closing)
   - [x] Trend indicators (up/down/neutral)
   - [x] Detailed narrative analysis
   - [x] "Practice Again" CTA
 - [x] 404 error page
 - [x] Responsive design (mobile + desktop)
-- [x] Custom design system with animations
+- [x] Custom warm color palette (orange/purple)
 - [x] 50+ shadcn/ui components installed
+- [x] **Removed /try-now page** (streamlined flow)
 
 **Technical Foundation:**
 - [x] React + TypeScript setup
@@ -480,23 +495,36 @@ Mike_Ferry_KB/
 
 ### 🚧 In Progress (Backend)
 
-**Voice Agent:**
-- [ ] Backend API server setup
-- [ ] WebSocket implementation for real-time communication
-- [ ] STT integration (speech input processing)
-- [ ] TTS integration (AI voice output)
-- [ ] LLM integration with persona prompts
-- [ ] Mike Ferry context injection
-- [ ] Transcript generation and storage
-- [ ] Session management
+**Infrastructure:**
+- [x] FastAPI project scaffold created
+- [x] UV package manager setup (Python 3.12)
+- [x] Project structure with routes, services, models
+- [x] .env configuration ready
+- [x] Database schema designed (PostgreSQL)
+  - [x] sessions table (transcript storage as JSONB)
+  - [x] feedback table (scores, narrative, Mike Ferry concepts)
+  - [x] feedback_chat table (chatbot Q&A history)
 
-**Feedback Agent:**
-- [ ] RAG system setup
-  - [ ] Vector database configuration
-  - [ ] Mike Ferry knowledge base embeddings
+**Voice Agent (Vapi Integration):**
+- [x] **Vapi handles all voice processing** (STT/TTS/LLM)
+- [x] VapiWidget component integrated in frontend
+- [x] Real-time voice conversation functional
+- [x] "Talk to Mukesh" AI prospect persona
+- [ ] Backend route to receive call transcripts from Vapi
+- [ ] Session storage of Vapi call data
+- [ ] Mike Ferry evaluation of Vapi transcripts
+
+**Feedback Agent (Tom Sant for Proposals):**
+- [x] Proposal Crafting page (demo mode)
+- [x] Tom Sant framework analysis scaffolded
+- [ ] Real PDF parsing implementation
+- [ ] OpenAI integration for actual analysis
+- [ ] RAG system for Tom Sant knowledge base
+  - [ ] Vector database configuration (Chroma/Pinecone)
+  - [ ] Tom Sant principles embeddings
   - [ ] Semantic search implementation
-- [ ] Feedback generation pipeline
-  - [ ] Transcript analysis
+- [ ] PDF report generation with ReportLab
+- [ ] Feedback chatbot backend
   - [ ] Scoring algorithm (4 categories)
   - [ ] Narrative generation with LLM
 - [ ] PDF generation system
@@ -580,72 +608,118 @@ Mike_Ferry_KB/
 ### Complete Flow
 
 ```
-0. Onboarding Flow (First-time users)
-   8-step psychological profiling process
-   ↓ See "Onboarding Flow Details" section below
+0. Landing Page (/)
+   Value proposition and features overview
+   ↓ [Clicks "Try Now" or "Get Started"]
 
-1. Recommendations Page (/recommendations)
-   Personalized skill recommendations based on profile
-   - Lead Outreach: 95% match (Fear of calling detected)
-   - Objection Handling: 85% match (Challenge selected)
-   - Pitching & Positioning: 70% match
-   Displays "Hello Amir" greeting
-   ↓ [User selects recommended skill or browses all]
+1. Onboarding Flow (8 steps)
+   Real Estate focused psychological profiling
+   - Basic Info: Name (Amir), Company (Nova Real Estate)
+   - Experience Level: Beginner/Intermediate/Experienced/Veteran
+   - Sales Role: **Real Estate ONLY** (others grayed out)
+   - Rejection Handling: 4-point resilience scale
+   - Communication Style: Analytical/Relationship/Assertive/Patient
+   - Top Challenges: Select 2 (Fear, Gatekeepers, Rapport, etc.)
+   - Learning Style: Trial & Error/Guided/Analytical/Quick Wins
+   - Goals: Confidence/Quota/Top Performer/Mastery/Advancement
+   ↓ Profile saved to localStorage
 
-2. Skill Selection (/try-now)
-   User chooses "Lead Outreach" (cold calling)
-   (Other options visible but lead to same flow)
-   ↓ [Clicks "Start Training"]
+2. Recommendations Page (/recommendations)
+   Displays "Hello Amir" greeting (first name only)
+   Personalized skill recommendations with match %:
 
-3. Persona Selection (/persona-selection)
-   User selects "Dominant & Aggressive" persona
-   (Only active persona for hackathon)
-   ↓ [Clicks "Select Persona"]
+   ✅ Lead Outreach (Active) - e.g., 95% match
+      "Perfect for overcoming call anxiety"
+      → Links to /persona-selection
 
-4. Pre-Call Screen (/call-simulation)
-   Animated phone icon with ringing effect
-   Brief intro: "You're calling Dominant & Aggressive Persona"
-   ↓ [Clicks "Start Call"]
+   ✅ Proposal Crafting (Active) - e.g., 75% match
+      "Craft compelling proposals that win deals"
+      → Links to /proposal-crafting
 
-5. Live Call (Voice Agent Active)
-   - Timer starts (0:00)
-   - User speaks: AI prospect responds in real-time
-   - Live transcript updates on screen
-   - Waveform visualizes audio activity
-   - Based on Mike Ferry methodology
-   ↓ [User clicks "End Call" or auto-ends]
+   🚧 Objection Handling & Closing (Coming Soon) - grayed out
+      Not clickable, shows "Coming Soon" badge
 
-6. Processing Screen (transition)
-   "Analyzing your performance..."
-   - Backend processes transcript
-   - RAG extracts relevant concepts
-   - LLM generates feedback
-   - PDF is created
-   ↓ [Auto-navigates when ready]
+   ↓ [User clicks one of the active skills]
 
-7. Feedback Display (/feedback)
-   - 4 score cards shown (Opening, Control, Objection Handling, Closing)
-   - Detailed narrative with specific examples
-   - References to Mike Ferry concepts
-   - Trend indicators
-   - PDF download button
+PATH A: LEAD OUTREACH (Voice Training)
+─────────────────────────────────────
+3a. Persona Selection (/persona-selection)
+    Select AI prospect personality:
+    - ✅ "Dominant & Aggressive" (Mukesh) - ACTIVE
+    - 🚧 "Analytical & Skeptical" - Coming Soon
+    - 🚧 "Timid & Uncertain" - Coming Soon
+    ↓ [Clicks "Select Persona"]
 
-8. Interactive Feedback Chat (same page)
-   User can ask questions:
-   - "Why did I get a low score on conversation control?"
-   - "What should I say when prospect says 'I'm busy'?"
-   - "Can you give an example of a better opening?"
+4a. Call Simulation (/call-simulation)
+    Vapi voice AI integration
+    - Shows "Talk to Mukesh" button (VapiWidget)
+    - Click to start real-time voice call
+    - Live transcript appears in floating widget
+    - Real conversation with AI prospect (Mukesh)
+    - Based on Mike Ferry cold calling methodology
+    ↓ [User clicks "End Call"]
 
-   AI responds with:
-   - Context from the call
-   - Specific Mike Ferry principles
-   - Actionable recommendations
+5a. Feedback Display (/feedback)
+    Mike Ferry methodology analysis
+    - 4 score cards: Opening/Control/Objection Handling/Closing
+    - Detailed narrative with specific call examples
+    - References to Mike Ferry concepts
+    - Trend indicators (improving/declining)
+    - "Practice Again" button → returns to /persona-selection
 
-   ↓ [User clicks "Practice Again"]
+PATH B: PROPOSAL CRAFTING (Document Analysis)
+──────────────────────────────────────────────
+3b. Proposal Upload (/proposal-crafting)
+    ⚠️ Demo Mode Banner shown
+    "This is a mock demonstration using sample data"
 
-9. Return to Persona Selection
-   User can practice again with same or different persona
-   (Loop back to step 3)
+    Upload interface:
+    - Click "Upload Sample PDF" → mock uploads "Business_Proposal_Q4_2024.pdf"
+    - Shows file name and size
+    - "Analyze Proposal" button
+    ↓ [Clicks "Analyze Proposal"]
+
+4b. Analysis Processing (2-second simulation)
+    "Analyzing..." loading state
+
+5b. Tom Sant Analysis Results (same page)
+    Shows comprehensive evaluation:
+
+    📊 Overall Score: 72/100 (Grade: B-)
+
+    🎯 Tom Sant's Framework Analysis:
+    - Customer-Centric Language (⚠ Needs Work)
+    - Executive Summary (✓ Strong)
+    - Proof Points (✓ Strong)
+    - Win Themes (✗ Missing)
+
+    📈 Sant Score Breakdown (5 categories):
+    - Customer-centric: 65/100
+    - Executive Summary: 82/100
+    - Proof Points: 88/100
+    - Win Themes: 45/100
+    - Value Pricing: 58/100
+
+    ✅ What You're Doing Right (3 strengths)
+    - References Sant principles with specific examples
+
+    📋 Tom Sant Recommendations (4 improvements)
+    - Actionable items with Sant methodology quotes
+
+    🎯 Your Next Steps:
+    - Primary Focus + 3 numbered action items
+    - Recommended Reading: Sant book chapter reference
+
+    ↓ [Clicks "Analyze Another Proposal" or "Back to Dashboard"]
+
+6b. Return to Recommendations (/recommendations)
+    Can select different skill or practice again
+
+BOTH PATHS:
+─────────
+User can navigate back to /recommendations anytime
+"Hello Amir" greeting persists across all pages
+Profile data saved in localStorage
 ```
 
 ### Onboarding Flow Details

@@ -5,66 +5,76 @@ This file provides comprehensive context about the Sell The Pen AI project for A
 ## Quick Reference
 
 **Project:** Sell The Pen AI - AI-Powered Sales Training Platform
-**Status:** Hackathon Project (Frontend Complete, Backend In Progress)
+**Target:** Real Estate Agents (Nova Real Estate focus)
+**Status:** Hackathon Project (Frontend Complete with Vapi, Backend Scaffold Ready)
 **Theme:** Digital Economy & Future of Work
-**Tech Stack:** React + TypeScript (Frontend), Python/Node.js (Backend - TBD)
+**Tech Stack:** React + TypeScript + Vapi (Frontend), FastAPI + Python (Backend)
 
 ## Important Links
 
-- **Full Project Overview:** See `overview.md` for complete documentation
-- **Frontend Documentation:** See `frontend.md` for UI/UX details
+- **Full Project Overview:** See `docs/overview.md` for complete documentation
+- **Frontend Documentation:** See `docs/frontend.md` for UI/UX details
+- **User Flow Diagram:** See `docs/USER_FLOW.md` for visual user journey
 
 ## Project Summary
 
-Sell The Pen AI is an AI-powered sales training platform that uses voice AI agents and RAG-based feedback to help sales professionals practice and improve their skills. The platform simulates realistic sales scenarios (cold calling, pitching, objection handling) and provides detailed, actionable feedback based on proven methodologies like Mike Ferry's cold calling approach.
+Sell The Pen AI is an AI-powered sales training platform designed for **Real Estate Agents** to practice cold calling and proposal writing. The platform uses Vapi for voice AI and provides methodology-based feedback (Mike Ferry for calls, Tom Sant for proposals).
 
 ### Key Components
 
-1. **Lead Outreach Voice Agent** (Hackathon MVP)
-   - Real-time voice conversations with AI prospects
-   - Mike Ferry methodology integration
-   - Speech-to-text and text-to-speech
-   - Live transcript generation
+1. **Lead Outreach Training** (✅ IMPLEMENTED - Vapi)
+   - Real-time voice conversations with "Mukesh" AI prospect via Vapi
+   - Mike Ferry cold calling methodology
+   - VapiWidget component for voice interaction
+   - Live transcript display in floating widget
+   - **Backend handles:** Transcript storage + Mike Ferry evaluation
 
-2. **Feedback Agent** (Hackathon MVP)
-   - RAG-based concept extraction from Mike Ferry principles
-   - 4-category scoring system
-   - PDF report generation
-   - Interactive chatbot for follow-up questions
+2. **Proposal Crafting Analysis** (✅ DEMO IMPLEMENTED - Tom Sant)
+   - PDF upload interface (mock upload for demo)
+   - Tom Sant "Persuasive Business Proposals" framework
+   - 5-category scoring: Customer-centric, Executive Summary, Proof Points, Win Themes, Value Pricing
+   - Actionable recommendations with Sant methodology quotes
+   - **Backend needs:** Real PDF parsing + OpenAI analysis + PDF report generation
 
-3. **Positioning Agent** (Future/Placeholder)
-   - Text-based pitching practice
-   - Frontend UI exists but backend not implemented
+3. **Objection Handling & Closing** (🚧 COMING SOON)
+   - Grayed out in UI with "Coming Soon" badge
+   - Future voice-based training module
 
 ## Current Status (November 2025)
 
-### ✅ Completed
+### ✅ Completed - Frontend
 - Full React + TypeScript frontend (production-ready)
-- **8-step onboarding flow with user profiling**
-- **UserProfile context for global state management**
-- **Recommendations page with smart skill matching**
-- **"Hello Amir" greeting on all pages post-onboarding**
-- Landing page, skill selection, persona selection, call simulation UI
-- Feedback display interface
+- **8-step onboarding flow** (Real Estate agents only, other roles grayed out)
+- **UserProfile context** (localStorage persistence, first name display "Hello Amir")
+- **Recommendations page** (smart skill matching with % scores)
+- **VapiWidget integration** ("Talk to Mukesh" button, live transcripts)
+- **Proposal Crafting page** (Tom Sant demo with mock PDF upload)
+- **Removed /try-now page** (streamlined flow)
+- **Grayed out features** (Objection Handling, non-Real Estate roles)
+- Feedback display with Mike Ferry methodology
 - 50+ shadcn/ui components
 - Responsive design (mobile + desktop)
-- React Query configuration
-- LocalStorage persistence for user profiles
 
-### 🚧 In Progress
-- Backend API server
-- WebSocket for real-time voice
-- STT/TTS integration
-- LLM integration with persona prompts
-- RAG system for feedback
-- PDF generation
+### ✅ Completed - Backend
+- **FastAPI scaffold** created with UV package manager (Python 3.12)
+- **Database schema** designed (sessions, feedback, feedback_chat tables)
+- **Routes structure** (sessions.py, feedback.py)
+- **Services structure** (voice_agent.py, feedback_analyzer.py scaffolded)
+- **.env configuration** ready
+
+### 🚧 In Progress - Backend
+- Vapi call transcript webhook endpoint
+- Mike Ferry RAG evaluation system
+- Tom Sant proposal analysis (PDF parsing + OpenAI)
+- PDF report generation (ReportLab)
+- Feedback chatbot backend
 
 ### ❌ Not Started
-- User authentication
-- Database setup
-- Multiple personas (only "Dominant & Aggressive" active)
-- Historical analytics
-- Deployment
+- User authentication (not needed for hackathon)
+- Database migrations & connection
+- Multiple Vapi personas
+- Historical analytics dashboard
+- Production deployment
 
 ## Technical Architecture
 
@@ -77,25 +87,41 @@ Sell The Pen AI is an AI-powered sales training platform that uses voice AI agen
 - **State:** React Query 5.83.0
 - **Dev Server:** Port 8080
 
-### Backend (Planned)
-- **Language:** Python or Node.js
-- **Framework:** FastAPI / Express
-- **Real-time:** WebSockets
-- **Database:** PostgreSQL / MongoDB
+### Backend (FastAPI)
+- **Language:** Python 3.12
+- **Framework:** FastAPI
+- **Package Manager:** UV (modern Python package manager)
+- **Database:** PostgreSQL (schema designed, not yet connected)
+- **Structure:**
+  ```
+  backend/
+  ├── main.py (FastAPI app with CORS)
+  ├── app/
+  │   ├── routes/ (sessions.py, feedback.py)
+  │   ├── services/ (voice_agent.py, feedback_analyzer.py)
+  │   └── db/ (schema.sql)
+  ├── .env.example
+  └── pyproject.toml (UV config)
+  ```
 
-### AI Services (To Implement)
-- **STT:** OpenAI Whisper / Deepgram / Google Cloud Speech-to-Text
-- **TTS:** ElevenLabs / OpenAI TTS / Google Cloud TTS
-- **LLM:** OpenAI GPT-4 / Anthropic Claude
-- **Vector DB:** Pinecone / Weaviate / Chroma
-- **Embeddings:** OpenAI text-embedding-3
+### AI Services
+- **Voice AI:** **Vapi** (handles STT/TTS/LLM for voice calls)
+- **LLM for Analysis:** OpenAI GPT-4 (to implement)
+- **Vector DB:** Chroma or Pinecone (for RAG - to implement)
+- **PDF Processing:** ReportLab (to implement)
 
-## User Journey (Hackathon MVP)
+## User Journey (Current Implementation)
 
 ```
-Onboarding (8 steps) → Recommendations → Skill Selection → Persona Selection
-→ Call Simulation → Processing → Feedback Display → Interactive Chat
-→ Practice Again
+Landing → Onboarding (8 steps, Real Estate only) → Recommendations
+
+PATH A: Lead Outreach
+Recommendations → Persona Selection → Call Simulation (Vapi: Talk to Mukesh)
+→ Feedback (Mike Ferry scores) → Practice Again
+
+PATH B: Proposal Crafting
+Recommendations → Upload PDF (mock) → Analysis (Tom Sant demo)
+→ View Scores & Recommendations → Back to Dashboard
 ```
 
 ### Onboarding Flow (NEW)
