@@ -3,13 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { OnboardingLayout } from "@/components/OnboardingLayout";
 import { useUserProfile } from "@/contexts/UserProfileContext";
 import { SalesRole } from "@/types/profile";
-import { Input } from "@/components/ui/input";
 
 const Role = () => {
   const navigate = useNavigate();
   const { profile, updateProfile } = useUserProfile();
-  const [selected, setSelected] = useState<SalesRole>(profile.salesRole);
-  const [customRole, setCustomRole] = useState(profile.customRole || "");
+  const [selected, setSelected] = useState<SalesRole>(profile.salesRole || "RealEstate");
 
   const options = [
     {
@@ -59,12 +57,12 @@ const Role = () => {
   const handleNext = () => {
     updateProfile({
       salesRole: selected,
-      customRole: selected === "Other" ? customRole : undefined,
+      customRole: undefined,
     });
     navigate("/onboarding/personality");
   };
 
-  const isValid = selected !== "Other" || customRole.trim().length > 0;
+  const isValid = selected === "RealEstate";
 
   return (
     <OnboardingLayout
@@ -79,45 +77,42 @@ const Role = () => {
         {options.map((option) => (
           <button
             key={option.value}
-            onClick={() => setSelected(option.value)}
-            className={`premium-card text-left hover:scale-[1.02] transition-all duration-300 cursor-pointer ${
+            onClick={() => option.available && setSelected(option.value)}
+            disabled={!option.available}
+            className={`premium-card text-left transition-all duration-300 relative ${
+              option.available
+                ? "hover:scale-[1.02] cursor-pointer"
+                : "opacity-50 cursor-not-allowed"
+            } ${
               selected === option.value
                 ? "border-2 border-primary shadow-lg"
-                : "hover:border-primary/40"
+                : option.available
+                ? "hover:border-primary/40"
+                : ""
             }`}
           >
             <div className="text-4xl mb-4">{option.icon}</div>
             <h3 className="text-lg font-semibold mb-2">{option.title}</h3>
             <p className="text-sm text-muted-foreground">{option.description}</p>
+            {!option.available && (
+              <span className="absolute top-3 right-3 text-xs bg-muted text-muted-foreground px-2 py-1 rounded-full">
+                Coming Soon
+              </span>
+            )}
           </button>
         ))}
 
-        {/* Other option with custom input */}
+        {/* Other option with custom input - grayed out */}
         <button
-          onClick={() => setSelected("Other")}
-          className={`premium-card text-left hover:scale-[1.02] transition-all duration-300 cursor-pointer ${
-            selected === "Other"
-              ? "border-2 border-primary shadow-lg"
-              : "hover:border-primary/40"
-          }`}
+          disabled
+          className="premium-card text-left transition-all duration-300 relative opacity-50 cursor-not-allowed"
         >
           <div className="text-4xl mb-4">📝</div>
           <h3 className="text-lg font-semibold mb-2">Other</h3>
-          {selected === "Other" ? (
-            <Input
-              type="text"
-              placeholder="Enter your role"
-              value={customRole}
-              onChange={(e) => {
-                e.stopPropagation();
-                setCustomRole(e.target.value);
-              }}
-              onClick={(e) => e.stopPropagation()}
-              className="mt-2"
-            />
-          ) : (
-            <p className="text-sm text-muted-foreground">Custom role</p>
-          )}
+          <p className="text-sm text-muted-foreground">Custom role</p>
+          <span className="absolute top-3 right-3 text-xs bg-muted text-muted-foreground px-2 py-1 rounded-full">
+            Coming Soon
+          </span>
         </button>
       </div>
     </OnboardingLayout>
