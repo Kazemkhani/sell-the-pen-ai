@@ -17,36 +17,42 @@ const Role = () => {
       icon: "📞",
       title: "SDR/BDR",
       description: "Lead generation, cold outreach",
+      available: false,
     },
     {
       value: "AE" as SalesRole,
       icon: "💰",
       title: "Account Executive",
       description: "Full cycle sales",
+      available: false,
     },
     {
       value: "AM" as SalesRole,
       icon: "🤝",
       title: "Account Manager",
       description: "Relationship management, upsells",
+      available: false,
     },
     {
       value: "RealEstate" as SalesRole,
       icon: "🏠",
       title: "Real Estate Agent",
       description: "Property sales",
+      available: true,
     },
     {
       value: "B2BSaaS" as SalesRole,
       icon: "📊",
       title: "B2B SaaS",
       description: "Software/technology sales",
+      available: false,
     },
     {
       value: "Retail" as SalesRole,
       icon: "🛍️",
       title: "Retail/B2C",
       description: "Direct to consumer",
+      available: false,
     },
   ];
 

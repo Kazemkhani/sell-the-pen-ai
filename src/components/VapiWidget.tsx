@@ -134,7 +134,7 @@ export const VapiWidget = ({ apiKey, assistantId, config, onCallStart, onCallEnd
           onClick={startCall}
           className="rounded-full bg-emerald-500 px-6 py-3 text-base font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-emerald-400"
         >
-          🎤 Talk to Brad
+          🎤 Talk to Mukesh
         </button>
       ) : (
         <div className="w-80 rounded-2xl border border-border/60 bg-background p-5 shadow-2xl">

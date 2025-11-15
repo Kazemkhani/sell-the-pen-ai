@@ -9,6 +9,7 @@ import PersonaSelection from "./pages/PersonaSelection";
 import CallSimulation from "./pages/CallSimulation";
 import Feedback from "./pages/Feedback";
 import Recommendations from "./pages/Recommendations";
+import ProposalCrafting from "./pages/ProposalCrafting";
 import NotFound from "./pages/NotFound";
 
 // Onboarding pages
@@ -48,6 +49,7 @@ const App = () => (
 
             {/* Main flow */}
             <Route path="/persona-selection" element={<PersonaSelection />} />
+            <Route path="/proposal-crafting" element={<ProposalCrafting />} />
             <Route path="/call-simulation" element={<CallSimulation />} />
             <Route path="/feedback" element={<Feedback />} />
 

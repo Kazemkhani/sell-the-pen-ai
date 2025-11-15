@@ -47,16 +47,18 @@ const Recommendations = () => {
       reason: profile.topChallenges.includes("fear")
         ? "Perfect for overcoming call anxiety and building confidence"
         : "Master the art of first contact and cold calling",
+      available: true,
     },
     {
       skill: "Proposal Crafting",
-      path: "#", // Coming soon
+      path: "/proposal-crafting",
       icon: "💼",
       match: proposalMatch,
       priority: proposalMatch >= 85 ? "high" : "medium",
       reason: profile.topChallenges.includes("value")
         ? "Helps you articulate value propositions clearly"
         : "Craft compelling proposals that win deals",
+      available: true,
     },
     {
       skill: "Objection Handling & Closing",
@@ -67,6 +69,7 @@ const Recommendations = () => {
       reason: profile.topChallenges.includes("objections")
         ? "Directly addresses your challenge with handling pushback"
         : "Learn to handle objections and close deals confidently",
+      available: false,
     },
   ];
 
@@ -122,17 +125,14 @@ const Recommendations = () => {
         {/* Recommendations */}
         <div className="space-y-6">
           <h2 className="text-3xl font-bold mb-8">Recommended Training Path</h2>
-          {recommendations.map((rec, index) => (
-            <Link
-              key={rec.skill}
-              to={rec.path}
-              className="block group"
-              style={{ animationDelay: `${0.2 + index * 0.1}s` }}
-            >
+          {recommendations.map((rec, index) => {
+            const CardContent = (
               <div
-                className={`premium-card hover:scale-[1.02] transition-all duration-300 ${
-                  rec.priority === "high" ? "border-2 border-primary/30" : ""
-                }`}
+                className={`premium-card transition-all duration-300 ${
+                  rec.available
+                    ? "hover:scale-[1.02]"
+                    : "opacity-50 cursor-not-allowed"
+                } ${rec.priority === "high" && rec.available ? "border-2 border-primary/30" : ""}`}
               >
                 <div className="flex items-start justify-between gap-6">
                   <div className="flex-1">
@@ -140,9 +140,14 @@ const Recommendations = () => {
                       <div className="text-4xl">{rec.icon}</div>
                       <div>
                         <h3 className="text-2xl font-semibold">{rec.skill}</h3>
-                        {rec.priority === "high" && (
+                        {rec.priority === "high" && rec.available && (
                           <span className="inline-block text-xs bg-primary/10 text-primary px-2 py-1 rounded-full mt-1">
                             Highly Recommended
+                          </span>
+                        )}
+                        {!rec.available && (
+                          <span className="inline-block text-xs bg-muted text-muted-foreground px-2 py-1 rounded-full mt-1">
+                            Coming Soon
                           </span>
                         )}
                       </div>
@@ -158,14 +163,36 @@ const Recommendations = () => {
                       <span className="text-sm font-medium">{rec.match}% match</span>
                     </div>
                   </div>
-                  <Button className="group-hover:translate-x-1 transition-transform">
-                    Start Training
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                  <Button
+                    className={rec.available ? "group-hover:translate-x-1 transition-transform" : ""}
+                    disabled={!rec.available}
+                  >
+                    {rec.available ? "Start Training" : "Coming Soon"}
+                    {rec.available && <ArrowRight className="ml-2 h-4 w-4" />}
                   </Button>
                 </div>
               </div>
-            </Link>
-          ))}
+            );
+
+            return rec.available ? (
+              <Link
+                key={rec.skill}
+                to={rec.path}
+                className="block group"
+                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+              >
+                {CardContent}
+              </Link>
+            ) : (
+              <div
+                key={rec.skill}
+                className="block"
+                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+              >
+                {CardContent}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
