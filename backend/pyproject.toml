@@ -1,0 +1,14 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "aiofiles>=25.1.0",
+    "deepgram-sdk>=5.3.0",
+    "fastapi>=0.121.2",
+    "openai>=2.8.0",
+    "python-dotenv>=1.2.1",
+    "reportlab>=4.4.4",
+    "uvicorn>=0.38.0",
+]
