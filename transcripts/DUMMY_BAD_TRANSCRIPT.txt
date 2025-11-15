@@ -1,0 +1,9 @@
+00:00 Agent: Um hey there, is this Mr. or Mrs... uh whoever owns the Pinecrest house?
+00:06 Prospect: Who is this?
+00:07 Agent: Sorry, yeah, I’m Jake with Summit Realty. Anyway I just wanted to see if you’d sell now?
+00:12 Prospect: Not really thinking about it.
+00:14 Agent: Okay, cool, I get it. If you ever change your mind just call me back.
+00:18 Prospect: Sure.
+00:19 Agent: Actually wait, could I maybe stop by sometime?
+00:21 Prospect: No thanks.
+00:22 Agent: Alright, I’ll email you something. Bye.

@@ -1,0 +1,13 @@
+00:00 Agent: Hi John, this is Maya Ortiz with Summit Realty. Is this a good time?
+00:05 Prospect: Sure, I have a minute.
+00:07 Agent: Perfect. I noticed your Maple Street condo has been on the market 92 days. What’s prompting the move?
+00:14 Prospect: We’re relocating to Denver for work.
+00:17 Agent: Got it. When do you need to be in Denver?
+00:21 Prospect: By the end of August.
+00:24 Agent: And have you already lined up housing there?
+00:27 Prospect: Not yet.
+00:29 Agent: Sounds like timing is tight. If I could show you how we get sellers under contract in under 21 days, would Tuesday at 2pm or Wednesday at 4pm work to walk you through the plan?
+00:38 Prospect: Tuesday at 2pm works.
+00:40 Agent: Great, I’ll pencil you in for Tuesday at 2. Fair enough that if it makes sense, we agree on next steps at the end?
+00:45 Prospect: Fair.
+00:46 Agent: Awesome. I’ll send a quick confirmation now.
