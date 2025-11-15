@@ -2,11 +2,16 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
+from pathlib import Path
 
-from app.routes import sessions, feedback
+BASE_DIR = Path(__file__).resolve().parent
+dotenv_paths = [BASE_DIR / ".env.local", BASE_DIR / ".env"]
+for dotenv_path in dotenv_paths:
+    if dotenv_path.exists():
+        load_dotenv(dotenv_path=dotenv_path, override=True)
+        break
 
-# Load environment variables
-load_dotenv()
+from app.routes import feedback
 
 app = FastAPI(title="Sell The Pen AI - Backend")
 
@@ -20,7 +25,6 @@ app.add_middleware(
 )
 
 # Routes
-app.include_router(sessions.router, prefix="/api/sessions", tags=["sessions"])
 app.include_router(feedback.router, prefix="/api/feedback", tags=["feedback"])
 
 @app.get("/")
