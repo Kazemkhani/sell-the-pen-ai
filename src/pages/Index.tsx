@@ -1,8 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Brain, Shield, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useUserProfile } from "@/contexts/UserProfileContext";
 
 const Index = () => {
+  const { profile } = useUserProfile();
+
+  // Determine where "Try Now" should go
+  const tryNowLink = profile.completedOnboarding ? "/recommendations" : "/onboarding/basic-info";
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -15,7 +21,7 @@ const Index = () => {
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto text-balance animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
             Practice live calls with AI personas, master the psychology of persuasion, and receive world-class feedback instantly.
           </p>
-          <Link to="/try-now">
+          <Link to={tryNowLink}>
             <Button size="lg" className="text-lg px-8 py-6 rounded-full group animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
               Try Now
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -133,7 +139,7 @@ const Index = () => {
           <h2 className="text-5xl md:text-6xl font-bold mb-8">
             Start Your First AI Sales Call.
           </h2>
-          <Link to="/try-now">
+          <Link to={tryNowLink}>
             <Button size="lg" className="text-lg px-8 py-6 rounded-full group">
               Try Now
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

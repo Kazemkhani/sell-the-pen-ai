@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { ArrowRight, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
+import { UserGreeting } from "@/components/UserGreeting";
 
 const Feedback = () => {
   const scores = [
@@ -49,7 +50,8 @@ const Feedback = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background px-6 py-24">
+    <div className="min-h-screen bg-background px-6 py-24 relative">
+      <UserGreeting />
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -108,7 +110,12 @@ const Feedback = () => {
         </div>
 
         {/* CTA */}
-        <div className="text-center animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+          <Link to="/recommendations">
+            <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full">
+              Choose Different Skill
+            </Button>
+          </Link>
           <Link to="/persona-selection">
             <Button size="lg" className="text-lg px-8 py-6 rounded-full group">
               Practice Again

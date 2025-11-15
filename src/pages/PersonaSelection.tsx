@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Flame, Search, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import { UserGreeting } from "@/components/UserGreeting";
 
 const PersonaSelection = () => {
   return (
-    <div className="min-h-screen bg-background px-6 py-24">
+    <div className="min-h-screen bg-background px-6 py-24 relative">
+      <UserGreeting />
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">

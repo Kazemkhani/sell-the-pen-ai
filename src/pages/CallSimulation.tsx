@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Phone, PhoneOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { UserGreeting } from "@/components/UserGreeting";
 
 const CallSimulation = () => {
   const [isCallStarted, setIsCallStarted] = useState(false);
@@ -33,7 +34,8 @@ const CallSimulation = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-6">
+    <div className="min-h-screen bg-background flex items-center justify-center px-6 relative">
+      <UserGreeting />
       <div className="max-w-2xl w-full text-center">
         {!isCallStarted ? (
           <div className="animate-fade-in-up">
