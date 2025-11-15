@@ -12,6 +12,7 @@ dependencies = [
     "python-dotenv>=1.2.1",
     "reportlab>=4.4.4",
     "uvicorn>=0.38.0",
+    "vapi-server-sdk>=0.2.0",
 ]
 
 [tool.setuptools]
