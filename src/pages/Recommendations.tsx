@@ -87,7 +87,7 @@ const Recommendations = () => {
             <span className="font-medium">Profile Complete!</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Welcome, {profile.name}!
+            Welcome, {profile.name.split(' ')[0]}!
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Based on your profile, here's your personalized training path
