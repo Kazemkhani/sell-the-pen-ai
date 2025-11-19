@@ -11,6 +11,7 @@ dependencies = [
     "pydantic>=2.9.2",
     "python-dotenv>=1.2.1",
     "reportlab>=4.4.4",
+    "slowapi>=0.1.9",
     "uvicorn>=0.38.0",
     "vapi-server-sdk>=0.2.0",
 ]

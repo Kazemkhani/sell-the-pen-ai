@@ -21,6 +21,7 @@ export const VapiWidget = ({ apiKey, assistantId, config, onCallStart, onCallEnd
   const [transcript, setTranscript] = useState<TranscriptLine[]>([]);
   const transcriptRef = useRef<TranscriptLine[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const callTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     transcriptRef.current = transcript;
@@ -49,11 +50,28 @@ export const VapiWidget = ({ apiKey, assistantId, config, onCallStart, onCallEnd
         setIsConnected(true);
         setTranscript([]);
         onCallStart?.();
+
+        // Auto-end call after max duration
+        const maxMinutes = parseInt(import.meta.env.VITE_MAX_CALL_DURATION_MINUTES || '5', 10);
+        const maxMs = maxMinutes * 60 * 1000;
+        console.log(`VapiWidget: Will auto-end call after ${maxMinutes} minutes`);
+
+        callTimeoutRef.current = setTimeout(() => {
+          console.log('VapiWidget: Max call duration reached, ending call');
+          instance.stop();
+        }, maxMs);
       });
       instance.on('call-end', () => {
         console.log('VapiWidget: Call ended');
         setIsConnected(false);
         setIsSpeaking(false);
+
+        // Clear timeout if call ended early
+        if (callTimeoutRef.current) {
+          clearTimeout(callTimeoutRef.current);
+          callTimeoutRef.current = null;
+        }
+
         const finalTranscript = transcriptRef.current;
         if (finalTranscript.length > 0) {
           const joined = finalTranscript.map((line) => `${line.role.toUpperCase()}: ${line.text}`).join('\n');

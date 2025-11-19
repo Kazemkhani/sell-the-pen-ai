@@ -1,7 +1,9 @@
 import logging
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import FileResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, validator
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 
 from app.services import FeedbackService
 
@@ -9,16 +11,30 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 feedback_service = FeedbackService()
+limiter = Limiter(key_func=get_remote_address)
 
 
 class FeedbackRequest(BaseModel):
     session_id: str | None = None
-    transcript_text: str | None = None
-    user_profile: dict | None = None  # Optional user profile from frontend
+
+    transcript_text: str | None = Field(
+        None,
+        max_length=50000,  # Prevents memory exhaustion (~30 min call)
+        description="Call transcript text"
+    )
+
+    user_profile: dict | None = None
+
+    @validator('user_profile')
+    def validate_profile_size(cls, v):
+        if v and len(str(v)) > 10000:  # 10KB limit
+            raise ValueError('User profile too large')
+        return v
 
 
 @router.post("/generate")
-async def generate_feedback(request: FeedbackRequest):
+@limiter.limit("10/hour")  # Max 10 requests per hour per IP
+async def generate_feedback(request: Request, feedback_req: FeedbackRequest):
     """
     Generate feedback report from call transcript
 
@@ -29,18 +45,18 @@ async def generate_feedback(request: FeedbackRequest):
     4. Create PDF report
     5. Return feedback + PDF path
     """
-    logger.info("/feedback/generate called", extra={"session_id": request.session_id})
+    logger.info("/feedback/generate called", extra={"session_id": feedback_req.session_id})
 
-    if not request.transcript_text:
+    if not feedback_req.transcript_text:
         raise HTTPException(
             status_code=400,
             detail="transcript_text is required until session transcripts are stored",
         )
 
     try:
-        logger.info("Dispatching transcript to FeedbackService", extra={"transcript_preview": request.transcript_text[:120]})
+        logger.info("Dispatching transcript to FeedbackService", extra={"transcript_preview": feedback_req.transcript_text[:120]})
         analysis = await feedback_service.analyze_transcript(
-            transcript=request.transcript_text
+            transcript=feedback_req.transcript_text
         )
         logger.info("FeedbackService returned analysis")
     except HTTPException as http_exc:
@@ -51,7 +67,7 @@ async def generate_feedback(request: FeedbackRequest):
         raise HTTPException(status_code=502, detail=str(exc)) from exc
 
     return {
-        "session_id": request.session_id,
+        "session_id": feedback_req.session_id,
         "analysis": analysis,
     }
 
