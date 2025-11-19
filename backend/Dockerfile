@@ -16,6 +16,14 @@ RUN uv pip install --system -r pyproject.toml
 # Copy application code
 COPY . .
 
+# Accept runtime arguments from Railway
+ARG CORS_ORIGINS
+ARG OPENAI_API_KEY
+
+# Make them available as env vars at runtime
+ENV CORS_ORIGINS=$CORS_ORIGINS
+ENV OPENAI_API_KEY=$OPENAI_API_KEY
+
 # Expose port
 EXPOSE 3000
 
