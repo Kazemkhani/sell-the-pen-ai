@@ -19,6 +19,5 @@ COPY . .
 # Expose port
 EXPOSE 3000
 
-# Run the application (Railway sets PORT env var)
-# Use shell form to allow variable expansion
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-3000}"]
+# Run the application
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3000"]
