@@ -10,8 +10,12 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   preview: {
-    host: true, // Allow Railway to access preview server
+    host: true,
     port: 4173,
+    allowedHosts: [
+      'frontend-production-fd2f.up.railway.app',
+      '.railway.app', // Allow all Railway domains
+    ],
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
