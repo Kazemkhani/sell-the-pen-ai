@@ -56,10 +56,10 @@ export interface UserProfile {
   completedOnboarding: boolean;
 }
 
-// Demo profile for Amir Kazamkhani
+// Demo profile - starts empty for user input
 export const DEMO_PROFILE: UserProfile = {
-  name: "Amir Kazamkhani",
-  company: "Nova Real Estate",
+  name: "",
+  company: "",
   experienceLevel: "beginner",
   salesRole: "RealEstate",
   rejectionResponse: "deeply-affected",

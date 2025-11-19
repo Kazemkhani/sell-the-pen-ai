@@ -56,19 +56,6 @@ async def generate_feedback(request: FeedbackRequest):
     }
 
 
-@router.get("/pdf/{session_id}")
-async def download_pdf(session_id: str):
-    """Download PDF feedback report"""
-    pdf_path = f"./data/pdfs/{session_id}.pdf"
-
-    # TODO: Check if file exists
-    return FileResponse(
-        pdf_path,
-        media_type="application/pdf",
-        filename=f"feedback_{session_id}.pdf"
-    )
-
-
 @router.post("/chat")
 async def feedback_chat(session_id: str, question: str):
     raise HTTPException(status_code=501, detail="Feedback chat not implemented")
