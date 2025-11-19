@@ -9,6 +9,10 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  preview: {
+    host: true, // Allow Railway to access preview server
+    port: 4173,
+  },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {
