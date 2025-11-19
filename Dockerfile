@@ -12,7 +12,21 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-# Build the app
+# Accept build arguments from Railway
+ARG VITE_DUMMY=false
+ARG VITE_API_URL
+ARG VITE_VAPI_PUBLIC_KEY
+ARG VITE_VAPI_ASSISTANT_ID
+ARG VITE_MAX_CALL_DURATION_MINUTES=5
+
+# Make them available as env vars during build
+ENV VITE_DUMMY=$VITE_DUMMY
+ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_VAPI_PUBLIC_KEY=$VITE_VAPI_PUBLIC_KEY
+ENV VITE_VAPI_ASSISTANT_ID=$VITE_VAPI_ASSISTANT_ID
+ENV VITE_MAX_CALL_DURATION_MINUTES=$VITE_MAX_CALL_DURATION_MINUTES
+
+# Build the app (Vite will now see the env vars)
 RUN npm run build
 
 # Production stage
