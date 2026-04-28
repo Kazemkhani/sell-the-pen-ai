@@ -1,0 +1,59 @@
+name: Telegram alerts
+
+on:
+  workflow_run:
+    workflows: ["*"]
+    types: [completed]
+  push:
+    branches: [main, master, production, staging]
+
+permissions:
+  actions: read
+
+jobs:
+  notify-failure:
+    if: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Send Telegram alert
+        env:
+          TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+          REPO: ${{ github.repository }}
+          WORKFLOW: ${{ github.event.workflow_run.name }}
+          BRANCH: ${{ github.event.workflow_run.head_branch }}
+          URL: ${{ github.event.workflow_run.html_url }}
+          ACTOR: ${{ github.event.workflow_run.actor.login }}
+        run: |
+          curl -sS -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${CHAT}" \
+            --data-urlencode "text=❌ ${REPO}
+${WORKFLOW} failed on ${BRANCH}
+by ${ACTOR}
+${URL}"
+
+  notify-prod-push:
+    if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/production') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Send Telegram alert
+        env:
+          TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
+          ACTOR: ${{ github.actor }}
+          MESSAGE: ${{ github.event.head_commit.message }}
+          SHA: ${{ github.event.head_commit.id }}
+          URL: ${{ github.event.head_commit.url }}
+        run: |
+          SHORT_SHA=$(echo "$SHA" | cut -c1-7)
+          FIRST_LINE=$(echo "$MESSAGE" | head -1)
+          curl -sS -X POST "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${CHAT}" \
+            --data-urlencode "text=🚀 ${REPO} → ${BRANCH}
+${SHORT_SHA} by ${ACTOR}
+${FIRST_LINE}
+${URL}"
