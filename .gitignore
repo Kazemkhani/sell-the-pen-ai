@@ -1,7 +1,44 @@
-# Logs
-# test change 
+# ---------------------------------------------------------------------------
+# Secrets — never commit env files. Templates (.env.example) are allowed.
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Credentials / keys that occasionally land in repos by accident
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+.secrets/
+
+# ---------------------------------------------------------------------------
+# Node / Frontend
+# ---------------------------------------------------------------------------
+node_modules
+dist
+dist-ssr
+*.local
+.vite/
+
+# ---------------------------------------------------------------------------
+# Python / Backend
+# ---------------------------------------------------------------------------
 __pycache__/
-*.egg-info*
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+backend/.venv/
+backend/build/
+backend/backend.egg-info/
+
+# ---------------------------------------------------------------------------
+# Logs
+# ---------------------------------------------------------------------------
 logs
 *.log
 npm-debug.log*
@@ -10,17 +47,23 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-# Editor directories and files
+# ---------------------------------------------------------------------------
+# Editor / OS
+# ---------------------------------------------------------------------------
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# ---------------------------------------------------------------------------
+# Generated artefacts (PDF reports, uploads, local test outputs)
+# ---------------------------------------------------------------------------
+backend/uploads/
+backend/generated/
+backend/reports/
+*.tmp
