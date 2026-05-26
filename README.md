@@ -209,10 +209,10 @@ Built by **Amir Hossein Kazemkhani** — founder of [Nova Labs](https://novalabs
 
 If this resonates and you want to talk shop on voice agents, sales tooling, or just AI-built-in-public:
 
-- 🔗 **LinkedIn** — [linkedin.com/in/your-handle](https://www.linkedin.com/in/your-handle/) <!-- TODO: replace -->
+- 🔗 **LinkedIn** — [linkedin.com/in/amirkazemkhani](https://www.linkedin.com/in/amirkazemkhani/)
 - 🐙 **GitHub** — [@amirhosseinkazemkhani](https://github.com/amirhosseinkazemkhani)
 - 🌐 **Nova Labs** — [novalabs.ae](https://novalabs.ae)
-- ✉️ **Email** — `amir [at] novalabs.ae`
+- ✉️ **Email** — [amir@amirkazemkhani.com](mailto:amir@amirkazemkhani.com)
 
 If you're a founder, recruiter, or fellow builder reading this — **star the repo** ⭐ so it surfaces in search, and feel free to open an issue with a question. I read every one.
 

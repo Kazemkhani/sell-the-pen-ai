@@ -8,7 +8,7 @@ Thanks for taking the time to look at the security of **Sell The Pen AI**. This 
 
 Please **do not** open a public GitHub issue for security reports. Instead, email:
 
-> **security@novalabs.ae** (or DM [@amirhosseinkazemkhani](https://github.com/amirhosseinkazemkhani))
+> **amir@amirkazemkhani.com** (or DM [@amirhosseinkazemkhani](https://github.com/amirhosseinkazemkhani))
 
 Include:
 
