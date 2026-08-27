@@ -1,7 +1,7 @@
 import logging
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import FileResponse
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 
@@ -25,7 +25,8 @@ class FeedbackRequest(BaseModel):
 
     user_profile: dict | None = None
 
-    @validator('user_profile')
+    @field_validator("user_profile")
+    @classmethod
     def validate_profile_size(cls, v):
         if v and len(str(v)) > 10000:  # 10KB limit
             raise ValueError('User profile too large')
@@ -54,7 +55,7 @@ async def generate_feedback(request: Request, feedback_req: FeedbackRequest):
         )
 
     try:
-        logger.info("Dispatching transcript to FeedbackService", extra={"transcript_preview": feedback_req.transcript_text[:120]})
+        logger.info("Dispatching transcript to FeedbackService")
         analysis = await feedback_service.analyze_transcript(
             transcript=feedback_req.transcript_text
         )
@@ -62,9 +63,9 @@ async def generate_feedback(request: Request, feedback_req: FeedbackRequest):
     except HTTPException as http_exc:
         logger.error("FeedbackService raised HTTPException: %s", http_exc.detail)
         raise
-    except Exception as exc:  # pragma: no cover - surfacing to client
+    except Exception as exc:  # pragma: no cover - provider failures
         logger.exception("FeedbackService failed to analyze transcript")
-        raise HTTPException(status_code=502, detail=str(exc)) from exc
+        raise HTTPException(status_code=502, detail="Feedback analysis is temporarily unavailable") from exc
 
     return {
         "session_id": feedback_req.session_id,

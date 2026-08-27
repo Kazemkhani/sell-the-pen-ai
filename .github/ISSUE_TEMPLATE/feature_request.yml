@@ -1,0 +1,24 @@
+name: Feature request
+description: Propose a focused improvement to the practice loop.
+title: "feature: "
+labels: [enhancement, triage]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Practice problem
+      description: What is difficult for the user today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the smallest useful behavior and how we could verify it.
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Boundaries and risks
+      description: Note provider, privacy, scoring or claim implications.

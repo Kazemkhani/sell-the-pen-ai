@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1270" height="760" viewBox="0 0 1270 760">
+  <rect width="1270" height="760" fill="#080b10"/>
+  <g stroke="#20252d"><path d="M0 92H1270M0 668H1270"/><path d="M72 0V760M1198 0V760"/></g>
+  <circle cx="1080" cy="330" r="230" fill="#ff5d52" opacity="0.06"/>
+  <text x="86" y="70" fill="#f4f1eb" font-family="Arial, sans-serif" font-size="21" font-weight="700" letter-spacing="6">SELL THE PEN</text>
+  <text x="86" y="178" fill="#ff6a60" font-family="monospace" font-size="14" letter-spacing="4">VOICE SALES TRAINING / HARD MODE</text>
+  <text x="86" y="268" fill="#f4f1eb" font-family="Arial, sans-serif" font-size="66" font-weight="700">Practice the call before</text>
+  <text x="86" y="344" fill="#f4f1eb" font-family="Arial, sans-serif" font-size="66" font-weight="700">it costs you the deal.</text>
+  <text x="88" y="409" fill="#9ea2aa" font-family="Arial, sans-serif" font-size="22">A difficult AI buyer. A transcript-linked scorecard.</text>
+  <text x="88" y="442" fill="#9ea2aa" font-family="Arial, sans-serif" font-size="22">One exact line to fix before the next rep.</text>
+  <g transform="translate(875 166)">
+    <rect width="300" height="370" rx="24" fill="#0e131b" stroke="#343b46" stroke-width="2"/>
+    <text x="25" y="40" fill="#676d77" font-family="monospace" font-size="11" letter-spacing="3">LIVE DRILL / 01</text>
+    <text x="25" y="92" fill="#f4f1eb" font-family="Arial, sans-serif" font-size="30" font-weight="700">Mukesh</text>
+    <text x="25" y="119" fill="#777d87" font-family="Arial, sans-serif" font-size="14">Skeptical · time-poor · hard mode</text>
+    <g transform="translate(28 158)" fill="#ff6258"><rect x="0" y="28" width="5" height="38" rx="3"/><rect x="13" y="12" width="5" height="70" rx="3"/><rect x="26" y="22" width="5" height="50" rx="3"/><rect x="39" y="0" width="5" height="94" rx="3"/><rect x="52" y="18" width="5" height="58" rx="3"/><rect x="65" y="7" width="5" height="80" rx="3"/><rect x="78" y="26" width="5" height="42" rx="3"/><rect x="91" y="10" width="5" height="76" rx="3"/><rect x="104" y="20" width="5" height="54" rx="3"/><rect x="117" y="3" width="5" height="88" rx="3"/><rect x="130" y="24" width="5" height="46" rx="3"/><rect x="143" y="8" width="5" height="78" rx="3"/><rect x="156" y="18" width="5" height="58" rx="3"/><rect x="169" y="1" width="5" height="92" rx="3"/><rect x="182" y="23" width="5" height="48" rx="3"/><rect x="195" y="13" width="5" height="68" rx="3"/><rect x="208" y="28" width="5" height="38" rx="3"/></g>
+    <path d="M24 283H276" stroke="#2b313a"/>
+    <text x="25" y="319" fill="#f4f1eb" font-family="Arial, sans-serif" font-size="18">“Give me one reason</text>
+    <text x="25" y="345" fill="#f4f1eb" font-family="Arial, sans-serif" font-size="18">not to hang up.”</text>
+  </g>
+  <g transform="translate(86 632)" font-family="Arial, sans-serif"><text fill="#ff6258" font-size="32" font-weight="700">01</text><text x="62" fill="#9297a0" font-size="16">hard-mode buyer</text><text x="286" fill="#ff6258" font-size="32" font-weight="700">05</text><text x="346" fill="#9297a0" font-size="16">scoring dimensions</text><text x="635" fill="#ff6258" font-size="32" font-weight="700">100</text><text x="708" fill="#9297a0" font-size="16">point scorecard</text></g>
+</svg>

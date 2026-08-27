@@ -2,228 +2,161 @@
 
 # Sell The Pen AI
 
-### Voice-first sales training that talks back.
+### Voice sales practice in hard mode.
 
-Practice cold calls against a real-time AI prospect, get scored against the **Mike Ferry** and **Tom Sant** methodologies, and walk away with an actual playbook for the next call — not a generic LinkedIn carousel.
+Practice against a difficult AI buyer, then turn the transcript into a scored breakdown and one focused drill for the next rep.
 
-<br />
+[Live demo](https://sell-the-pen-ai.vercel.app/) · [Scored replay](https://sell-the-pen-ai.vercel.app/feedback?demo=GOOD) · [Launch kit](./docs/launch/PRODUCT_HUNT.md)
 
-![Status](https://img.shields.io/badge/status-prototype-orange?style=for-the-badge)
-![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
-![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-Python_3.12-009688?style=for-the-badge&logo=fastapi&logoColor=white)
-![Vapi](https://img.shields.io/badge/Voice-Vapi-10B981?style=for-the-badge)
-![OpenAI](https://img.shields.io/badge/LLM-OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
+[![CI](https://github.com/Kazemkhani/sell-the-pen-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Kazemkhani/sell-the-pen-ai/actions/workflows/ci.yml)
+[![MIT License](https://img.shields.io/badge/license-MIT-202020.svg)](./LICENSE)
+[![React](https://img.shields.io/badge/React-18-149ECA.svg?logo=react&logoColor=white)](https://react.dev/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Python%203.12-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 
-<br />
-
-<!--
-  📸  Drop a 10–20s screen recording (MP4 → GIF) of a live call into ./docs/demo.gif
-       and the line below will render it on GitHub automatically.
--->
-<!-- ![Sell The Pen AI — live demo](docs/demo.gif) -->
+![Sell The Pen AI product overview](./docs/launch/product-hunt/gallery-01-hero.png)
 
 </div>
 
----
+## The practice loop
 
-## Why this exists
+Most sales advice is consumed away from the moment it is needed. Sell The Pen AI compresses the loop into one session:
 
-Sales reps don't fail because they didn't read enough books. They fail because they get one shot a day to call a real prospect, freeze halfway through the opener, and then wait 24 hours to try again.
+1. Enter a voice drill with a buyer who interrupts, objects and withholds easy answers.
+2. Finish the conversation and preserve its transcript.
+3. Review a transparent 100-point scorecard across five observable dimensions.
+4. Repeat one exact line or drill before the next attempt.
 
-**Sell The Pen AI** collapses that loop. You spin up a live, full-duplex conversation with an AI buyer named *Mukesh* — a deliberately tough Dubai real-estate prospect — pitch him, get rejected, recover, and the moment you hang up the platform has already scored the call against a named methodology and handed you back the exact lines that landed and the exact ones that didn't.
+The public deployment defaults to a deterministic recorded replay, so anyone can inspect the complete scoring experience without an account or API key. Live voice is available when a Vapi public key and assistant ID are configured.
 
-It's the kind of repetition that used to cost \$2,500/day at a sales bootcamp. Now it's a tab in your browser.
+## What is real today
 
----
-
-## ✨ What it does
-
-| | |
+| Capability | Evidence |
 |---|---|
-| 🎙️ **Live voice cold-calls** | Sub-second turn-taking with a Vapi-hosted assistant. Real interruptions, real objections, real silence-when-you-ramble. |
-| 📊 **Methodology-graded feedback** | Every transcript is scored against the Mike Ferry framework (opening, objection handling, conversation control, close) and timestamped back to the moment it happened. |
-| 📄 **Proposal teardown** | Drop in a PDF proposal and get a Tom Sant *Persuasive Business Proposals* breakdown across five dimensions, with the exact paragraph rewrites suggested. |
-| 🧬 **8-step onboarding** | Captures experience level, communication style, resilience and top blockers — so the AI prospect's difficulty and the feedback tone are tuned to *you*. |
-| 🎯 **Smart recommendations** | A small matching layer ranks which skill to drill next based on your stated weaknesses. |
-| 💾 **Local-first** | Nothing leaves your machine in dev mode. Vapi handles the audio leg; everything else runs on `localhost`. |
+| Difficult voice buyer | One Vapi persona with interruption and objection handling |
+| Structured scorecard | Opening 20, discovery 25, objections 25, appointment setting 20, delivery 10 |
+| Transcript-linked coaching | Strengths, critical mistakes, better lines and the next drill point back to the call |
+| Reproducible offline path | Two bundled fixtures: a high-control call and a needs-work call |
+| Inspectable launch claims | No testimonials, causal performance claims or fabricated transformation metrics |
 
----
+![Transcript-linked scorecard](./docs/launch/product-hunt/gallery-04-scorecard.png)
 
-## 🧠 How it's wired
+## Architecture
 
 ```mermaid
 flowchart LR
     subgraph Browser
-        UI[React + Vite UI]
-        Widget[VapiWidget<br/>full-duplex audio]
+        UI[React + Vite]
+        Voice[Vapi web client]
+        Replay[Recorded transcript fixtures]
     end
 
-    subgraph Vapi Cloud
-        STT[Speech-to-Text]
-        LLM1[Persona LLM<br/>'Mukesh']
-        TTS[Text-to-Speech]
+    subgraph VoiceCloud[Voice path]
+        STT[Speech to text]
+        Buyer[Buyer persona]
+        TTS[Text to speech]
     end
 
-    subgraph Backend [FastAPI · Python 3.12]
-        Feedback[Feedback Service]
-        Analyzer[LLM Analyzer<br/>Mike Ferry / Tom Sant]
-        Report[PDF Report<br/>ReportLab]
+    subgraph API[FastAPI service]
+        Score[Feedback analysis]
+        Report[Structured scorecard]
     end
 
-    UI -- "start call" --> Widget
-    Widget <-- "audio + transcript" --> STT
-    STT --> LLM1 --> TTS --> Widget
-    Widget -- "final transcript" --> UI
-    UI -- "POST /api/feedback/generate" --> Feedback
-    Feedback --> Analyzer --> Report
-    Report -- "scored report" --> UI
+    UI --> Voice
+    Voice <--> STT --> Buyer --> TTS --> Voice
+    Replay --> UI
+    Voice --> UI --> Score --> Report --> UI
 ```
 
-The browser owns the conversation. The backend owns the judgement. Clean separation, easy to swap any layer.
+The browser owns the practice session. The API owns analysis. The fixture path bypasses both external providers and returns a deterministic scorecard for demos, tests and screenshots.
 
----
+## Run it locally
 
-## 🚀 Quick start
-
-> You'll need [Node 20+](https://nodejs.org/), [Python 3.12+](https://www.python.org/downloads/), and [`uv`](https://docs.astral.sh/uv/) installed.
-> You'll also need a free [Vapi](https://vapi.ai) account and an OpenAI key.
-
-### 1. Clone
+Requirements: Node.js 20+, Python 3.12+ and [`uv`](https://docs.astral.sh/uv/).
 
 ```bash
-git clone https://github.com/<your-username>/sell-pen-ai-flow.git
-cd sell-pen-ai-flow
+git clone https://github.com/Kazemkhani/sell-the-pen-ai.git
+cd sell-the-pen-ai
+npm ci
+cp .env.example .env.local
+npm run dev
 ```
 
-### 2. Frontend
+The default configuration uses the recorded high-control call. Switch the fixture with:
 
-```bash
-npm install
-cp .env.example .env        # then paste your Vapi public key + assistant ID
-npm run dev                 # http://localhost:8080
+```dotenv
+VITE_DUMMY=true
+VITE_TYPE=BAD
 ```
 
-### 3. Backend
+To enable the voice drill:
+
+```dotenv
+VITE_DUMMY=false
+VITE_VAPI_PUBLIC_KEY=your-public-key
+VITE_VAPI_ASSISTANT_ID=your-assistant-id
+```
+
+Restrict the public Vapi key to your deployed origin. Do not place private provider keys in frontend variables.
+
+Run the optional feedback API separately:
 
 ```bash
 cd backend
-uv venv && source .venv/bin/activate
-uv pip install .
-cp .env.example .env.local  # then paste your OPENAI_API_KEY
-make dev                    # http://localhost:3000
+uv sync --frozen
+cp .env.example .env.local
+make dev
 ```
 
-### 4. Offline demo (no API keys)
+## Quality gates
 
 ```bash
-# In .env
-VITE_DUMMY=true
-VITE_TYPE=GOOD     # or BAD — loads one of two fixture transcripts
+npm ci
+npm run lint
+npm run build
+npm audit --omit=dev --audit-level=moderate
+
+cd backend
+uv sync --frozen
+uv run python -m compileall -q .
+uv run python -c "from fastapi.testclient import TestClient; from main import app; assert TestClient(app).get('/').status_code == 200"
 ```
 
-That short-circuits the live call and runs the entire flow against a bundled transcript — perfect for screenshots, recording demos, or showing the project at a coffee shop on hotel Wi-Fi.
+The frontend currently has zero production dependency findings at moderate severity or above. The repository history was checked for common credential patterns before the public-release gate; only documented placeholders were found.
 
----
+## Project map
 
-## 🧱 Tech stack
-
-**Frontend** — React 18 · TypeScript 5 · Vite 5 · Tailwind CSS · shadcn/ui · React Router · TanStack Query · `@vapi-ai/web`
-
-**Backend** — FastAPI · Pydantic v2 · OpenAI Python SDK · `vapi-server-sdk` · Deepgram SDK · ReportLab · uv
-
-**Voice / AI** — Vapi (orchestration + STT + TTS) · OpenAI GPT-4-class (analysis)
-
----
-
-## 🗂 Project structure
-
-```
-sell-pen-ai-flow/
-├── src/                       # React app
-│   ├── components/
-│   │   └── VapiWidget.tsx     # Full-duplex call widget
-│   ├── pages/
-│   │   ├── onboarding/        # 8-step profile wizard
-│   │   ├── CallSimulation.tsx # Live "Talk to Mukesh"
-│   │   ├── Feedback.tsx       # Mike Ferry scorecard
-│   │   ├── ProposalCrafting.tsx
-│   │   └── Recommendations.tsx
-│   ├── contexts/UserProfileContext.tsx
-│   └── lib/env.ts             # Typed env access
-├── backend/                   # FastAPI service
-│   ├── main.py
-│   ├── app/
-│   │   ├── routes/feedback.py
-│   │   └── services/          # LLM analysis + scoring
-│   └── prompts/               # Versioned system prompts
-├── transcripts/               # Fixture transcripts for offline demos
-├── docs/                      # Long-form architecture & flow docs
-├── .env.example               # Frontend env template
-├── backend/.env.example       # Backend env template
-└── SECURITY.md
+```text
+src/
+  components/VapiWidget.tsx     voice-session lifecycle
+  data/dummy-feedback.ts        deterministic scored replays
+  lib/transcript-source.ts      transcript source resolution
+  pages/CallSimulation.tsx      live drill surface
+  pages/Feedback.tsx            five-dimension scorecard
+backend/
+  app/routes/feedback.py        analysis API
+  app/services/                 structured scoring and reporting
+transcripts/                    offline call fixtures
+docs/launch/                    Product Hunt copy and visual assets
 ```
 
----
+## Current boundaries
 
-## 🔐 Security & secrets
+- The public replay demonstrates product behavior; it is not evidence that training causes sales improvement.
+- Scores are rubric-based coaching signals, not certifications.
+- The current release has one live buyer persona and two replay fixtures.
+- The proposal-analysis screen remains a prototype and is not part of the Product Hunt promise.
+- The project credits frameworks that informed early rubric design. No affiliation, endorsement or certification is implied.
 
-This repository is public on purpose, so a quick word on what's safe and what isn't:
+## Contributing and security
 
-- **No live keys are committed.** Every secret lives in `.env` / `.env.local`, which are git-ignored and have never been pushed (verified with `git log --diff-filter=A`).
-- **`VITE_VAPI_PUBLIC_KEY` is browser-public by design** — that's how Vapi's web SDK is meant to work. Lock it to your production domain(s) in the [Vapi dashboard](https://dashboard.vapi.ai/) so it can't be used from elsewhere.
-- **All sensitive keys live server-side**: `OPENAI_API_KEY`, `VAPI_API_KEY` (private), `DEEPGRAM_API_KEY`, `DATABASE_URL`. They never leave the FastAPI process.
-- **Reporting an issue?** See [SECURITY.md](./SECURITY.md) for the responsible-disclosure flow.
+Issues and focused pull requests are welcome. Read [CONTRIBUTING.md](./CONTRIBUTING.md) before changing the scorecard, fixtures or provider boundaries.
 
-If you fork this repo, the first thing to do is rotate any keys you've used locally and double-check your own `.gitignore` before your first push.
+Do not report vulnerabilities in a public issue. Follow [SECURITY.md](./SECURITY.md) for private disclosure.
 
----
+## Author
 
-## 🗺 Roadmap
+Built by [Amir Hossein Kazemkhani](https://github.com/Kazemkhani), founder of [NOVA Labs](https://novalabs.ae), in Dubai.
 
-- [x] Live voice cold-call flow with Vapi
-- [x] Mike Ferry scoring on returned transcripts
-- [x] Tom Sant proposal teardown UI (demo data)
-- [x] 8-step personalisation onboarding
-- [ ] Real PDF parsing + Tom Sant grading pipeline
-- [ ] Multiple AI prospects (skeptical CFO, gatekeeper, FSBO seller…)
-- [ ] Conversational follow-up coach on the feedback page
-- [ ] Practice streaks + history dashboard
-- [ ] Self-hostable Docker compose
+## License
 
----
-
-## 🧪 Methodologies referenced
-
-This project is built around two named bodies of work — both are credited because they shape the rubric, not because the project is affiliated with either:
-
-- **Mike Ferry** — cold-calling structure: opening, objection handling, control, close.
-- **Tom Sant**, *Persuasive Business Proposals* — customer-centricity, executive summary, proof points, win themes, value pricing.
-
----
-
-## 👋 Author
-
-Built by **Amir Hossein Kazemkhani** — founder of [Nova Labs](https://novalabs.ae), based in Dubai. I build voice-first AI products and ship them publicly.
-
-If this resonates and you want to talk shop on voice agents, sales tooling, or just AI-built-in-public:
-
-- 🔗 **LinkedIn** — [linkedin.com/in/amirkazemkhani](https://www.linkedin.com/in/amirkazemkhani/)
-- 🐙 **GitHub** — [@amirhosseinkazemkhani](https://github.com/amirhosseinkazemkhani)
-- 🌐 **Nova Labs** — [novalabs.ae](https://novalabs.ae)
-- ✉️ **Email** — [amir@amirkazemkhani.com](mailto:amir@amirkazemkhani.com)
-
-If you're a founder, recruiter, or fellow builder reading this — **star the repo** ⭐ so it surfaces in search, and feel free to open an issue with a question. I read every one.
-
----
-
-## 📄 License
-
-[MIT](./LICENSE) — do what you like, attribution appreciated, no warranty.
-
----
-
-<div align="center">
-  <sub>Built in public. Shipped from Dubai. 🇦🇪</sub>
-</div>
+[MIT](./LICENSE). Attribution is appreciated; no warranty is provided.

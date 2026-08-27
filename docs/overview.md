@@ -3,6 +3,8 @@
 > AI-Powered Sales Training Platform for the Digital Economy
 > Hackathon Project | Theme: Digital Economy & Future of Work
 
+> **Status note (August 2026):** This is a historical design document, retained to show the project’s evolution. For the current product scope, evidence, and launch claims, use the repository README and `docs/launch/PRODUCT_HUNT.md`.
+
 ---
 
 ## Table of Contents

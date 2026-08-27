@@ -20,8 +20,15 @@ export const VapiWidget = ({ apiKey, assistantId, config, onCallStart, onCallEnd
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [transcript, setTranscript] = useState<TranscriptLine[]>([]);
   const transcriptRef = useRef<TranscriptLine[]>([]);
+  const onCallStartRef = useRef(onCallStart);
+  const onCallEndRef = useRef(onCallEnd);
   const scrollRef = useRef<HTMLDivElement>(null);
   const callTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    onCallStartRef.current = onCallStart;
+    onCallEndRef.current = onCallEnd;
+  }, [onCallStart, onCallEnd]);
 
   useEffect(() => {
     transcriptRef.current = transcript;
@@ -49,7 +56,7 @@ export const VapiWidget = ({ apiKey, assistantId, config, onCallStart, onCallEnd
         console.log('VapiWidget: Call started');
         setIsConnected(true);
         setTranscript([]);
-        onCallStart?.();
+        onCallStartRef.current?.();
 
         // Auto-end call after max duration
         const maxMinutes = parseInt(import.meta.env.VITE_MAX_CALL_DURATION_MINUTES || '5', 10);
@@ -75,9 +82,9 @@ export const VapiWidget = ({ apiKey, assistantId, config, onCallStart, onCallEnd
         const finalTranscript = transcriptRef.current;
         if (finalTranscript.length > 0) {
           const joined = finalTranscript.map((line) => `${line.role.toUpperCase()}: ${line.text}`).join('\n');
-          onCallEnd?.(joined);
+          onCallEndRef.current?.(joined);
         } else {
-          onCallEnd?.('');
+          onCallEndRef.current?.('');
         }
       });
       instance.on('speech-start', () => {

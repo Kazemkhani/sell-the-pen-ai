@@ -1,14 +1,14 @@
 # Security Policy
 
-Thanks for taking the time to look at the security of **Sell The Pen AI**. This project is currently in a hackathon / portfolio stage, so the surface area is small — but reports are welcome and read carefully.
+Thanks for taking the time to examine the security of **Sell The Pen AI**. Reports are welcome and reviewed carefully.
 
-> **Internal note:** the full pre-launch security audit (including findings and fixes that have already shipped) lives at [`docs/SECURITY_AUDIT.md`](./docs/SECURITY_AUDIT.md) for the maintainers' reference. This file is the public-facing disclosure policy.
+The pre-launch security review and shipped mitigations are documented in [`docs/SECURITY_AUDIT.md`](./docs/SECURITY_AUDIT.md). This file defines the disclosure process.
 
 ## Reporting a vulnerability
 
 Please **do not** open a public GitHub issue for security reports. Instead, email:
 
-> **amir@amirkazemkhani.com** (or DM [@amirhosseinkazemkhani](https://github.com/amirhosseinkazemkhani))
+> **amir@amirkazemkhani.com** (or contact [@Kazemkhani](https://github.com/Kazemkhani))
 
 Include:
 

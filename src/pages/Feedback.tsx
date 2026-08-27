@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { UserGreeting } from "@/components/UserGreeting";
 import { requestFeedbackAnalysis } from "@/lib/feedback-api";
 import { resolveTranscriptForFeedback, TranscriptPayload } from "@/lib/transcript-source";
+import { getDummyFeedbackAnalysis } from "@/data/dummy-feedback";
 import type { FeedbackAnalysis } from "@/types/feedback";
 
 const dimensionConfig = {
@@ -23,7 +24,7 @@ const dimensionConfig = {
   qualifying: {
     title: "Qualifying Questions",
     maxScore: 25,
-    description: "Mike Ferry's four must-ask questions and follow-ups.",
+    description: "Four must-ask discovery questions and their follow-ups.",
     pointLabels: {
       question_count: "Question count",
       pain_focused: "Pain focused",
@@ -81,6 +82,12 @@ const Feedback = () => {
     if (!payload.transcript?.trim()) {
       setLoading(false);
       setError("No call transcript available. Start a call first.");
+      return;
+    }
+
+    if (payload.source === "dummy") {
+      setAnalysis(getDummyFeedbackAnalysis(payload.type));
+      setLoading(false);
       return;
     }
 
@@ -146,19 +153,20 @@ const Feedback = () => {
       <div className="max-w-6xl mx-auto space-y-12">
         <div className="text-center animate-fade-in-up">
           <p className="uppercase tracking-[0.3em] text-xs text-muted-foreground mb-4">
-            Mike Ferry Certified Scoring
+            Structured Call Scoring
           </p>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">Your Sales Breakdown</h1>
           <p className="text-lg text-muted-foreground">
-            Feedback generated from your transcript using OpenAI structured outputs.
+            Transcript-linked feedback across five observable sales dimensions.
           </p>
           {transcriptMeta && (
             <div className="inline-flex items-center gap-2 rounded-full bg-muted/70 px-4 py-1 mt-6 text-sm text-muted-foreground">
-              <span className="font-semibold text-foreground">Source:</span>
-              {transcriptMeta.source === "dummy" && `Dummy (${transcriptMeta.type}) transcript`}
-              {transcriptMeta.source === "session" && "Recent Vapi session"}
-              {transcriptMeta.source === "fallback" && "Fallback sample"}
-              {transcriptMeta.source === "placeholder" && "Awaiting live call transcript"}
+              <span className="font-semibold text-foreground">Replay:</span>
+              {transcriptMeta.source === "dummy" &&
+                `Recorded sample · ${transcriptMeta.type === "GOOD" ? "high-control" : "needs-work"} call`}
+              {transcriptMeta.source === "session" && "Recent live session"}
+              {transcriptMeta.source === "fallback" && "Recorded fallback sample"}
+              {transcriptMeta.source === "placeholder" && "Waiting for a live-call transcript"}
             </div>
           )}
         </div>
