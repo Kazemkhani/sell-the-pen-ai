@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#080b10"/>
+  <g stroke="#20252d"><path d="M0 80H1200M0 552H1200"/><path d="M70 0V630M1130 0V630"/></g>
+  <text x="82" y="63" fill="#f4f1eb" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="6">SELL THE PEN</text>
+  <text x="82" y="174" fill="#ff6258" font-family="monospace" font-size="14" letter-spacing="4">VOICE SALES TRAINING / HARD MODE</text>
+  <text x="82" y="264" fill="#f4f1eb" font-family="Arial, sans-serif" font-size="64" font-weight="700">Practice the call before</text>
+  <text x="82" y="338" fill="#f4f1eb" font-family="Arial, sans-serif" font-size="64" font-weight="700">it costs you the deal.</text>
+  <text x="84" y="401" fill="#969ba4" font-family="Arial, sans-serif" font-size="21">A difficult AI buyer · a transcript-linked scorecard · one next drill</text>
+  <g transform="translate(844 458)" fill="#ff6258"><rect x="0" y="18" width="5" height="34" rx="3"/><rect x="14" y="7" width="5" height="56" rx="3"/><rect x="28" y="14" width="5" height="42" rx="3"/><rect x="42" y="0" width="5" height="70" rx="3"/><rect x="56" y="12" width="5" height="46" rx="3"/><rect x="70" y="4" width="5" height="62" rx="3"/><rect x="84" y="16" width="5" height="38" rx="3"/><rect x="98" y="5" width="5" height="60" rx="3"/><rect x="112" y="13" width="5" height="44" rx="3"/><rect x="126" y="1" width="5" height="68" rx="3"/><rect x="140" y="17" width="5" height="36" rx="3"/><rect x="154" y="8" width="5" height="54" rx="3"/><rect x="168" y="19" width="5" height="32" rx="3"/></g>
+  <text x="82" y="589" fill="#686e77" font-family="monospace" font-size="13" letter-spacing="2">LIVE VOICE · 5-DIMENSION RUBRIC · 100-POINT SCORECARD</text>
+</svg>

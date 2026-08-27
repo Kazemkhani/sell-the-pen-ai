@@ -74,7 +74,7 @@ const GOOD_ANALYSIS: FeedbackAnalysis = {
       what: 'Assertive opening',
       timestamp: '00:05',
       quote: 'John, this is Maya Ortiz with Summit Realty. Is now a bad time?',
-      why_good: 'Respects time while keeping control—classic Mike Ferry opening cadence.',
+      why_good: 'Respects time while keeping control through a concise, structured opening.',
     },
     {
       what: 'Looped objection',
@@ -222,7 +222,7 @@ const BAD_ANALYSIS: FeedbackAnalysis = {
     overall_impression: 'Feels like a script read without control or confidence.',
   },
   next_steps: {
-    primary_focus: 'Rebuild the Mike Ferry opening word-for-word',
+    primary_focus: 'Rebuild the opening word-for-word',
     practice_drill: 'Spend 30 minutes standing while reading the opening until it is confident and under 12 seconds.',
     script_to_memorize: 'Hi [name], this is [your name] with [company]. Is now a bad time?',
     success_metric: 'Deliver the opening flawlessly 20 times before the next live call.',

@@ -1,0 +1,36 @@
+name: Bug report
+description: Report a reproducible problem in the drill, replay or scorecard.
+title: "bug: "
+labels: [bug, triage]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include the route, expected behavior and actual behavior.
+    validations:
+      required: true
+  - type: dropdown
+    id: path
+    attributes:
+      label: Product path
+      options:
+        - Recorded replay
+        - Live voice drill
+        - Scorecard
+        - Backend API
+        - Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Provide the smallest safe set of steps. Do not include credentials or private transcripts.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: Browser, OS, commit or deployment URL

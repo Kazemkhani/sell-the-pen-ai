@@ -2,6 +2,8 @@
 
 > AI-Powered Sales Training Platform Frontend
 
+> **Status note (August 2026):** This document records the original hackathon implementation. The current public positioning, launch scope, and verified behavior are defined in the repository README and `docs/launch/PRODUCT_HUNT.md`.
+
 
 ## 🆕 Recent Updates (November 2025)
 

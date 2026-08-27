@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1270" height="760" viewBox="0 0 1270 760">
+  <rect width="1270" height="760" fill="#080b10"/>
+  <text x="80" y="88" fill="#ff6258" font-family="monospace" font-size="14" letter-spacing="4">THE BUYER DOES NOT WANT TO BE HERE</text>
+  <text x="80" y="160" fill="#f4f1eb" font-family="Arial, sans-serif" font-size="54" font-weight="700">Hard mode starts with pushback.</text>
+  <text x="80" y="205" fill="#969ba4" font-family="Arial, sans-serif" font-size="21">Interruptions, objections and silence are part of the rep—not edge cases.</text>
+  <g transform="translate(80 282)">
+    <rect width="1110" height="330" rx="26" fill="#0e131b" stroke="#343b46" stroke-width="2"/>
+    <circle cx="82" cy="78" r="38" fill="#271719" stroke="#71332f"/><text x="82" y="86" text-anchor="middle" fill="#ff6258" font-family="Arial" font-size="24" font-weight="700">M</text>
+    <text x="142" y="70" fill="#f4f1eb" font-family="Arial, sans-serif" font-size="28" font-weight="700">Mukesh</text>
+    <text x="142" y="99" fill="#777d87" font-family="Arial, sans-serif" font-size="15">Dubai property owner · skeptical · time-poor</text>
+    <rect x="865" y="44" width="195" height="48" rx="24" fill="#271719" stroke="#71332f"/><circle cx="895" cy="68" r="6" fill="#ff6258"/><text x="918" y="74" fill="#ff857d" font-family="monospace" font-size="13" letter-spacing="2">HARD MODE</text>
+    <path d="M52 142H1058" stroke="#292f38"/>
+    <text x="58" y="207" fill="#f4f1eb" font-family="Arial, sans-serif" font-size="32">“I already have an agent.</text>
+    <text x="58" y="252" fill="#f4f1eb" font-family="Arial, sans-serif" font-size="32">Give me one reason not to hang up.”</text>
+    <text x="58" y="299" fill="#ff6258" font-family="monospace" font-size="13" letter-spacing="3">YOUR MOVE / THE TRANSCRIPT IS ALREADY ROLLING</text>
+  </g>
+  <text x="80" y="675" fill="#747a84" font-family="Arial, sans-serif" font-size="18">One focused buyer today. Community-chosen hard mode #02 ships next.</text>
+</svg>
