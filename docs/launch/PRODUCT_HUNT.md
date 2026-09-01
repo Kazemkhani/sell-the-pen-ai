@@ -89,9 +89,9 @@ Secondary events: scorecard completed; second drill started; GitHub visit; star/
 - [x] Public production URL deployed and checked.
 - [ ] Vapi public key and assistant ID restricted to the production domain.
 - [ ] Live microphone call tested on desktop and mobile.
-- [ ] Backend tests and privacy language verified.
-- [ ] Repository secret/history audit repeated immediately before public release.
-- [ ] Amir explicitly approves changing the repository from private to public.
-- [ ] Final assets exported and visually checked.
+- [x] Backend smoke gate and privacy language verified.
+- [x] Repository secret/history audit repeated immediately before public release.
+- [x] Amir explicitly approves changing the repository from private to public.
+- [x] Final assets exported and visually checked.
 - [ ] 45–60 second deployed-product video uploaded to YouTube as unlisted/public, not private.
 - [ ] Product Hunt draft and teaser scheduled.
